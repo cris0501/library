@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+p {
+    @apply inline;
+}
+.blockMath {
+    @apply my-5;
+}
+
+.eq {
+    @apply mx-2 inline;
+}

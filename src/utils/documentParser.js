@@ -1,39 +1,34 @@
-import codeSections from "./sections.json"
+import searchSections from "./sections.js"
 
-function readFile(_document, callBack) {
-    let file = null;
-    let reader = new FileReader();
+function readFileAsync(_document) {
+    return new Promise( (resolve, reject) => {
+        let reader = new FileReader()
 
-    reader.onload = (e) => {
-      file = e.target.result;
-      callBack(file)
-    };
-    
-    reader.readAsText(_document);
-}
+        reader.onload = (e) => {
+          const file = e.target.result
+          resolve(file)
+        }
 
-function searchSections(file){
-    const regex = /\$([\s\S*?]\$)/g
-    let notes = {
-        count: 0,
-        notes: []
-    };
-
-    let allOptions = { // Bloques completos de opciones, cada elemento tiene opciones
-        count: 0,
-        allOptions: []
-    }
-
-    let match;
-    while( (match = regex.exec(file) !== null ))
-}
-
-function init(e, setTex){
-    let _document = e.target.files[0];
-    readFile(_document, (file) => {
-        setTex(file)
+        reader.onerror = (e) => {
+            reject(e.target.error)
+        }
+        
+        reader.readAsText(_document)
     })
-    // setTex(readFile(_document));
+}
+
+async function init(e, setPage){
+    let _document = e.target.files[0]
+
+    const content = await readFileAsync(_document)
+        .then( (file) => {
+            return file
+        })
+        .catch( (error) => {
+            console.log(e)
+        })
+
+    setPage(searchSections(content))
 }
 
 export default init

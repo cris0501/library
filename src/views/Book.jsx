@@ -1,34 +1,67 @@
-import React from 'react';
-import ReactMarkdown from 'react-markdown';
-import { InlineMath, BlockMath } from 'react-katex';
+import React, { useState, useEffect } from 'react';
+import parser from '@utils/documentParser.js'
+import katex from "katex";
 import 'katex/dist/katex.min.css'
 
-const markdownContent = `
-# Mi Documento
+const inLine = `
+Aquí una ecuación en línea:
+$\\frac{1}{2}$
+`
 
-Esto es un texto normal.
-
-Aquí una ecuación en línea: $\\frac{1}{2}$
-
-Y un bloque de ecuación:
-
+const inBlock = `
 $$
 \\int_{0}^{\\infty} e^{-x^2} dx = \\frac{\\sqrt{\\pi}}{2}
 $$
-`;
+`
 
-const App = () => {
-  return (
-    <div>
-      <ReactMarkdown
-        children={markdownContent}
-        components={{
-          inlineMath: ({ value }) => <InlineMath math={value} />,
-          math: ({ value }) => <BlockMath math={value} />,
-        }}
-      />
-    </div>
-  );
-};
+const Book = () => {
+    const [page, setPage] = useState([])
 
-export default App;
+    useEffect( () => {
+        const equations = document.getElementsByClassName('eq')
+        const blocks = document.getElementsByClassName('blockMath')
+
+        if (equations.length){
+            for( const eq of equations){
+                eq.innerHTML = katex.renderToString(eq.innerHTML)
+            }
+        }
+        if (blocks.length){
+            for( const block of blocks){
+                katex.render(block.innerHTML, block)
+            }
+        }
+    }, [page])
+
+    function handleChange (e){
+        parser(e, setPage)
+    }
+
+    return (
+        <>
+            <div id="page">
+                {page.map( (parraf) => (
+                        parraf.map( (item, index) => (
+                        <>
+                            {item.type == 'text' && (
+                                <p className="inline"> {item.content} </p>
+                            )}
+                            {item.break && (
+                                <div className="block"></div>
+                            )}
+                            {item.type == 'eq' && (
+                                <span className='eq'> {item.content} </span>
+                            )}
+                            {item.type == 'block' && (
+                                <div className='blockMath'> {item.content} </div>
+                            )}
+                        </>
+                    ))
+                ))}
+            </div>
+            <input type="file" name="file" id="file" onChange={handleChange} />
+        </>
+    )
+}
+
+export default Book;

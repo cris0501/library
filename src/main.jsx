@@ -1,10 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from '@views/Book.jsx'
+import Book from '@views/Book.jsx'
+import "@styles/main.css"
 import "@styles/icons.css"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <Book />
   </React.StrictMode>,
 )
