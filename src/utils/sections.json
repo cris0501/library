@@ -1,0 +1,19 @@
+{
+    "sections": [
+        {
+            "name": "note",
+            "left": "<!--note",
+            "right": "note-->"
+        },
+        {
+            "name": "opts",
+            "left": "<!--opts",
+            "right": "opts-->"
+        },
+        {
+            "name": "@opt",
+            "left": "<!--@opt",
+            "right": "@opt-->"
+        }
+    ]
+}
