@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'icons';
+  src:  url('fonts/icons.eot?4h7dd4');
+  src:  url('fonts/icons.eot?4h7dd4#iefix') format('embedded-opentype'),
+  url('fonts/icons.ttf?4h7dd4') format('truetype'),
+  url('fonts/icons.woff?4h7dd4') format('woff'),
+  url('fonts/icons.svg?4h7dd4#icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  /* margin-right: 10px; */
+  font-family: 'icons' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-user:before {
+  content: "\e90e";
+}
+.icon-c:before {
+  content: "\e90f";
+  color: #a8b9cc;
+}
+.icon-facebook:before {
+  content: "\e900";
+  color: #1877f2;
+}
+.icon-library:before {
+  content: "\e90a";
+}
+.icon-latex:before {
+  content: "\e925";
+  color: #008080;
+}
+.icon-mail:before {
+  content: "\e901";
+  color: #168de2;
+}
+.icon-python:before {
+  content: "\e928";
+  color: #3776ab;
+}
+.icon-tailwindcss:before {
+  content: "\e918";
+  color: #38b2ac;
+}
+.icon-laravel:before {
+  content: "\e91c";
+  color: #ff2d20;
+}
+.icon-react:before {
+  content: "\e91d";
+  color: #61dafb;
+}
+.icon-vue:before {
+  content: "\e91e";
+  color: #4fc08d;
+}
+.icon-trash:before {
+  content: "\e90d";
+}
+.icon-check:before {
+  content: "\e90c";
+}
+.icon-ok:before {
+  content: "\e90c";
+}
+.icon-books:before {
+  content: "\e90b";
+}
+.icon-heart:before {
+  content: "\e902";
+}
+.icon-cross:before {
+  content: "\e903";
+}
+.icon-cancel:before {
+  content: "\e903";
+}
+.icon-close:before {
+  content: "\e903";
+}
+.icon-download:before {
+  content: "\e904";
+}
+.icon-upload:before {
+  content: "\e905";
+}
+.icon-bubble:before {
+  content: "\e906";
+}
+.icon-comment:before {
+  content: "\e906";
+}
+.icon-chat:before {
+  content: "\e906";
+}
+.icon-talk:before {
+  content: "\e906";
+}
+.icon-home:before {
+  content: "\e907";
+}
+.icon-house:before {
+  content: "\e907";
+}
+.icon-arrow-right:before {
+  content: "\e908";
+}
+.icon-right:before {
+  content: "\e908";
+}
+.icon-arrow-left:before {
+  content: "\e909";
+}
+.icon-left:before {
+  content: "\e909";
+}
+
+  
+body {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}

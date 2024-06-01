@@ -1,0 +1,148 @@
+{
+  "type": "start",
+  "content": [
+    {
+      "type": "text",
+      "content": "Vamos a probar "
+    },
+    {
+      "type": "equation",
+      "content": {
+        "type": "text",
+        "content": "x=10"
+      }
+    },
+    {
+      "type": "text",
+      "content": "como primer parrafo este contenido con "
+    },
+    {
+      "type": "note",
+      "title": {
+        "type": "text",
+        "content": "recuerda"
+      },
+      "content": {
+        "type": "content_note",
+        "content": [
+          {
+            "type": "text",
+            "content": "cotenido de mi "
+          },
+          {
+            "type": "equation",
+            "content": {
+              "type": "text",
+              "content": "nota"
+            }
+          },
+          {
+            "type": "text",
+            "content": "con una ecuacion "
+          },
+          {
+            "type": "equation",
+            "content": {
+              "type": "text",
+              "content": "7x=70"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "new_line"
+    },
+    {
+      "type": "text",
+      "content": "y aqui otra linea que mas adelante deberia ser posible pasarla a parrafo"
+    },
+    {
+      "type": "new_line"
+    },
+    {
+      "type": "text",
+      "content": "Nuevo parrafo el cual por ahora se comporta como linea con una "
+    },
+    {
+      "type": "equation",
+      "content": {
+        "type": "text",
+        "content": "equation"
+      }
+    },
+    {
+      "type": "new_line"
+    },
+    {
+      "type": "block_math",
+      "content": [
+        {
+          "type": "text",
+          "content": "\\int_0^1 x^2 dx "
+        }
+      ]
+    },
+    {
+      "type": "block",
+      "items": [
+        {
+          "type": "item",
+          "content": [
+            {
+              "type": "text",
+              "content": "Texto con "
+            },
+            {
+              "type": "equation",
+              "content": {
+                "type": "text",
+                "content": "equation"
+              }
+            },
+            {
+              "type": "text",
+              "content": "Que muestra un div para tener contenido\n  "
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "content": [
+            {
+              "type": "text",
+              "content": "Otro elemento "
+            },
+            {
+              "type": "note",
+              "title": {
+                "type": "text",
+                "content": "titulo"
+              },
+              "content": {
+                "type": "content_note",
+                "content": [
+                  {
+                    "type": "text",
+                    "content": "Contenido anidado de notas "
+                  },
+                  {
+                    "type": "equation",
+                    "content": {
+                      "type": "text",
+                      "content": "quation2"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "content": "con ecuaciones"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

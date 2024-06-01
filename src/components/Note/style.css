@@ -1,0 +1,15 @@
+.note {
+  @apply inline relative;
+  overflow: visible;
+}
+  .note > div {
+    @apply rounded-lg bg-yellow-400 p-2 absolute bottom-[250%] left-0 min-w-[150px] max-w-[500px] text-black font-bold z-10;
+  }
+  .note > div:after {
+    content: "";
+    @apply absolute top-[100%] left-5 w-0 h-0;
+    border-style: solid;
+    border-width: 0 0px 20px 20px;
+    border-color: transparent transparent rgba(250, 204, 21) transparent;
+    transform: rotate(180deg);
+  }

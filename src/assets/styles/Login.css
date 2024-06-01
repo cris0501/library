@@ -1,0 +1,28 @@
+.login {
+  @apply flex h-[100vh];
+}
+
+  .login .container {
+    @apply flex flex-col justify-center w-full lg:w-1/2 space-y-3 px-8 lg:px-20;
+  }
+
+    .login input {
+      @apply px-4 py-2 text-white border-4 border-primary h-16 bg-primary;
+    }
+
+      .login input:focus {
+        @apply border-l-second outline-none;
+      }
+    
+    .login .bg {
+      @apply hidden lg:block w-1/2 overflow-hidden;
+      background-image: url('../images/alpes.jpeg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: right;
+    }
+
+    .login button {
+      @apply bg-second w-3/4 mx-auto text-[#2d3250] py-3 rounded-lg font-bold;
+      box-shadow: 0px 0px 10px #f9b17a;
+    }

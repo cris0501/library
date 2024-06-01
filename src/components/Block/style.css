@@ -1,0 +1,7 @@
+.customBlock {
+  @apply flex flex-nowrap snap-mandatory snap-x;
+  overflow-y: visible;
+}
+  .customBlock .item {
+    @apply min-w-full snap-center p-3;
+  }
