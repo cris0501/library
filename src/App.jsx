@@ -4,6 +4,7 @@ import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import Home from './views/Home'
 import View from './views/View'
 import Login from './views/Login'
+import Register from './views/Register'
 import Catalog from './views/Catalog';
 
 import './assets/styles/App.css'
@@ -13,12 +14,12 @@ const App = () => {
   const [isHidden, setIsHidden] = useState(false)
 
   useEffect(() => {
-    if (location.pathname === '/login') {
+    if ( ['/login', '/register'].includes(location.pathname) ) {
       setIsHidden(true);
     } else {
       setIsHidden(false);
     }
-    }, [location.pathname]);
+  }, [location.pathname]);
   
   return (
     <div>
@@ -36,6 +37,7 @@ const App = () => {
         <Route path="/catalog" element={<Catalog />} />
         <Route path="/view" element={<View />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </div>
   );
