@@ -1,5 +1,5 @@
 .login {
-  @apply flex h-[100vh];
+  @apply flex justify-center h-[100vh];
 }
 
   .login .container {

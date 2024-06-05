@@ -14,7 +14,7 @@ const App = () => {
   const [isHidden, setIsHidden] = useState(false)
 
   useEffect(() => {
-    if ( ['/login', '/register'].includes(location.pathname) ) {
+    if ( ['/login', '/register','/view'].includes(location.pathname) ) {
       setIsHidden(true);
     } else {
       setIsHidden(false);
