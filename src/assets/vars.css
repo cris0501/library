@@ -1,0 +1,19 @@
+@theme {
+  --color-primary: rgb(250, 204, 21);
+}
+
+.font-plex {
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.font-merri {
+  font-family: 'Merriweather', serif;
+}
+
+.font-nunito {
+  font-family: 'Nunito', serif;
+}
+
+.font-jet {
+  font-family: 'JetBrains Mono', serif;
+}
