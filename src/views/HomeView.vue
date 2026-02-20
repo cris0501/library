@@ -7,7 +7,11 @@
           A new way to learn languages with interactive exercises and LaTeX support
         </p>
         <div class="flex justify-around items-center mx-auto mt-8 space-x-4">
-          <button class="btn-primary"> Try Demo </button>
+          <button class="btn-primary">
+            <RouterLink :to="{name: 'book'}">
+              Try Demo
+            </RouterLink>
+          </button>
           <button class="btn-primary"> Learn More </button>
         </div>
       </div>
@@ -219,6 +223,8 @@
 </template>
 
 <script setup>
+  import { RouterLink } from 'vue-router'
+
   const timeLine = [
     {
       title: 'Write LaTeX File',

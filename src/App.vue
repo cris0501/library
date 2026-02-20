@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header v-if="showHeader">
     <div class="fixed w-full bg-primary px-5 py-3 z-10">
       <nav class="flex px-6 lg:px-24">
         <div class="flex flex-1 items-center">
@@ -16,22 +16,27 @@
           <RouterLink :to="{name: 'doc'}">
             <span class="font-bold btn"> Documentation </span>
             </RouterLink>
-          <!-- <RouterLink to="/"> -->
+            <RouterLink :to="{name: 'book'}">
             <span class="font-bold btn-primary"> Start Learning </span>
-            <!-- </RouterLink> -->
+          </RouterLink>
         </div>
       </nav>
     </div>
   </header>
 
-  <!-- <div class="w-full pt-[76px]"> -->
-    <RouterView />
-  <!-- </div> -->
+  <RouterView />
 </template>
 
 <script setup>
-  import { RouterLink, RouterView } from 'vue-router'
+  import { computed } from 'vue'
+  import { useRoute, RouterLink, RouterView } from 'vue-router'
   import './assets/main.css'
+
+  const route = useRoute()
+
+  const showHeader = computed( () => {
+    return route.name !== 'book'
+  })
 </script>
 
 <style scoped>
