@@ -23,9 +23,9 @@
     class="w-full lg:w-5/6 px-8 py-12 mx-auto mt-[110px] mb-16 text-justify"
     :style="{ fontSize: fontSize + 'em' }"
   >
-    <div v-if="data && data.content">
+    <div v-if="data">
       <RenderContent
-        v-for="(item, index) in data.content"
+        v-for="(item, index) in data"
         :key="'rc-' + index"
         :item="item"
       />
@@ -45,7 +45,7 @@ import { ref, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import RenderContent from '../components/book/RenderContent.vue'
 
-const data = ref(null)
+const data = ref([])
 const fontSize = ref(0.9)
 
 onMounted(() => {
@@ -57,3 +57,5 @@ onMounted(() => {
     .catch(console.error)
 })
 </script>
+
+

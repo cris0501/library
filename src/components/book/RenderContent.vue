@@ -1,47 +1,57 @@
 <template>
-  <template v-if="item.type === 'new_line'">
-    <br /><br />
+  <template v-if="typeof item === 'string'">
+    {{ item }}
   </template>
 
-  <span v-else-if="item.type === 'text'" class="inline font-nunito">{{ item.content }}</span>
+  <template v-else-if="item && item.kind">
+    <template v-if="item.kind === 'paragraph'">
+      <div class="display-block my-4"></div>
+    </template>
+  
+    <template v-if="item.kind === 'newline'">
+      <br /><br />
+    </template>
 
-  <Equation v-else-if="item.type === 'equation'" :content="item.content" />
+    <strong v-else-if="item.kind === 'bold'" class="font-bold font-nunito">
+      <RenderContent 
+        v-for="(subItem, index) in item.content" 
+        :key="index" 
+        :item="subItem" 
+      />
+    </strong>
 
-  <Note
-    v-else-if="item.type === 'note'"
-    :title="item.title.content"
-    :content="item.content.content"
-  />
+    <em v-else-if="item.kind === 'italic'" class="italic font-nunito">
+      <RenderContent 
+        v-for="(subItem, index) in item.content" 
+        :key="index" 
+        :item="subItem" 
+      />
+    </em>
 
-  <Block v-else-if="item.type === 'block'" :items="item.items" />
+    <template v-else-if="item.kind === 'math'">
+      <Equation :raw="item.raw" :inline="item.mode === 'inline'" />
+    </template>
 
-  <BlockMath v-else-if="item.type === 'block_math'" :content="item.content" />
+    <template v-else-if="item.kind === 'list'">
+      <OrderList :content="item.content" v-if="item.ordered" />
+      <UnorderList :content="item.content" v-else />
+    </template>
 
-  <OrderList v-else-if="item.type === 'order_list'" :content="item.content" />
+    <template v-else-if="item.kind === 'note'">
+      <Note :title="item.params?.join(', ')" :content="item.content" />
+    </template>
 
-  <UnorderList v-else-if="item.type === 'unorder_list'" :content="item.content" />
-
-  <BookImage
-    v-else-if="item.type === 'image'"
-    :style="item.style.content"
-    :url="item.url.content"
-    :content="item.content.content"
-  />
-
-  <Alert v-else-if="item.type === 'alert'" :title="item.content[0].content" />
+  </template>
 </template>
 
 <script setup>
 import Equation from './Equation.vue'
-import Note from './Note.vue'
-import Block from './Block.vue'
-import BlockMath from './BlockMath.vue'
 import OrderList from './OrderList.vue'
 import UnorderList from './UnorderList.vue'
-import BookImage from './BookImage.vue'
-import Alert from './Alert.vue'
+import Note from './Note.vue'
 
 defineProps({
-  item: { type: Object, required: true }
+  item: { required: true }
 })
 </script>
+
