@@ -23,7 +23,7 @@
     class="w-full lg:w-5/6 px-8 py-12 mx-auto mt-[110px] mb-16 text-justify"
     :style="{ fontSize: fontSize + 'em' }"
   >
-    <div v-if="data">
+    <div v-if="data.length">
       <RenderContent
         v-for="(item, index) in data"
         :key="'rc-' + index"
@@ -41,21 +41,24 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import { RouterLink } from 'vue-router'
-import RenderContent from '../components/book/RenderContent.vue'
-
-const data = ref([])
-const fontSize = ref(0.9)
-
-onMounted(() => {
-  fetch('/books/test.json')
-    .then(r => r.json())
-    .then(r => {
-      setTimeout(() => { data.value = r }, 1000)
-    })
-    .catch(console.error)
-})
+  import { ref, onMounted, provide } from 'vue'
+  import { RouterLink } from 'vue-router'
+  import RenderContent from '../components/book/RenderContent.vue'
+  
+  const data = ref([])
+  const fontSize = ref(0.9)
+  
+  
+    const activeNoteId = ref(null)
+    provide('activeNoteId', activeNoteId)
+  
+  onMounted(() => {
+    fetch('/books/test.json')
+      .then(r => r.json())
+      .then(r => {
+        setTimeout(() => { data.value = r }, 1500)
+      })
+      .catch(console.error)
+  })
 </script>
-
 

@@ -27,34 +27,40 @@
 </template>
 
 <script setup>
-  import { ref, nextTick } from 'vue'
+  import { ref, nextTick , inject, computed, watch } from 'vue'
   import RenderContent from './RenderContent.vue'
   
   defineProps({
     title: { required: true },
     content: { type: Array, required: true }
   })
-  
-  const show = ref(false)
+
   const noteElement = ref(null)
   const anchor = ref(null) // Referencia a la palabra
   const positionClass = ref('left-1/2 -translate-x-1/2')
   
+  const instanceId = Symbol()
+  const activeNoteId = inject('activeNoteId')
+  const show = computed(() => activeNoteId.value === instanceId)
+  
   const toggleNote = async () => {
     if (show.value) {
-      show.value = false
-      // Al cerrar, se limpia la posicion
+      activeNoteId.value = null
       positionClass.value = 'left-1/2 -translate-x-1/2'
     } else {
-      show.value = true
-      await nextTick()
-      calculatePosition()
+      activeNoteId.value = instanceId
     }
   }
   
+  watch(show, async (isShowing) => {
+    if (isShowing){
+      await nextTick()
+      calculatePosition()
+    }
+  })
+  
   const calculatePosition = () => {
     if (!noteElement.value || !anchor.value) return
-  
     const noteRect = noteElement.value.getBoundingClientRect()
     const screenWidth = window.innerWidth
     const padding = 20
@@ -75,5 +81,6 @@
     else {
       positionClass.value = 'left-1/2 -translate-x-1/2'
     }
-}
+  }
+
 </script>

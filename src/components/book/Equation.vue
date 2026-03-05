@@ -8,11 +8,12 @@ import 'katex/dist/katex.min.css'
 import { computed } from 'vue'
 
 const props = defineProps({
-  raw: { type: String, required: true }
+  raw: { type: String, required: true },
+  displayMode: { type: Boolean, default: false }
 })
 
 const rendered = computed(() =>
-  katex.renderToString(props.raw, { throwOnError: false, displayMode: false })
+  katex.renderToString(props.raw, { throwOnError: false, displayMode: props.displayMode })
 )
 </script>
 

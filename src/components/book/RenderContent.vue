@@ -29,7 +29,7 @@
     </em>
 
     <template v-else-if="item.kind === 'math'">
-      <Equation :raw="item.raw" :inline="item.mode === 'inline'" />
+      <Equation :raw="item.raw" :displayMode="item.mode === 'display'" />
     </template>
 
     <template v-else-if="item.kind === 'list'">
@@ -45,13 +45,13 @@
 </template>
 
 <script setup>
-import Equation from './Equation.vue'
-import OrderList from './OrderList.vue'
-import UnorderList from './UnorderList.vue'
-import Note from './Note.vue'
+  import Equation from './Equation.vue'
+  import OrderList from './OrderList.vue'
+  import UnorderList from './UnorderList.vue'
+  import Note from './Note.vue'
 
-defineProps({
-  item: { required: true }
-})
+  defineProps({
+    item: { required: true }
+  })
 </script>
 
