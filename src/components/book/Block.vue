@@ -1,8 +1,10 @@
 <template>
   <div class="my-6">
     <div class="border-2 border-yellow-400 rounded-xl p-4 mb-3 min-h-[80px]">
+      <!-- Se itera sobre la lista de \items -->
       <div v-for="(item, index) in items" :key="'block-'+index" v-show="active === index">
-        <RenderContent v-for="(c, i) in item.content" :key="'bc-'+i" :item="c" />
+        <!-- Se itera sobre el content del \item -->
+        <RenderContent v-for="(sub, i) in item.content" :key="'bc-'+i" :item="sub" />
       </div>
     </div>
     <div class="flex justify-center gap-2">
@@ -31,3 +33,4 @@ defineProps({
 
 const active = ref(0)
 </script>
+

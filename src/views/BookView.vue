@@ -8,8 +8,8 @@
       <span class="font-plex font-bold text-sm text-gray-800">T. Letra</span>
       <input
         type="range"
-        min="0.7"
-        max="1.5"
+        min="0.9"
+        max="1.6"
         step="0.1"
         :value="fontSize"
         @input="fontSize = parseFloat($event.target.value)"
@@ -20,10 +20,11 @@
 
   <!-- Content -->
   <div
-    class="w-full lg:w-5/6 px-8 py-12 mx-auto mt-[110px] mb-16 text-justify"
+    class="w-full lg:w-5/6 px-4 py-6 mx-auto mt-4 mb-16 text-justify"
     :style="{ fontSize: fontSize + 'em' }"
   >
     <div v-if="data.length">
+      <!-- Iteramos sobre el array del book -->
       <RenderContent
         v-for="(item, index) in data"
         :key="'rc-' + index"
@@ -46,7 +47,7 @@
   import RenderContent from '../components/book/RenderContent.vue'
   
   const data = ref([])
-  const fontSize = ref(0.9)
+  const fontSize = ref(1.2)
   
   
     const activeNoteId = ref(null)
@@ -61,4 +62,5 @@
       .catch(console.error)
   })
 </script>
+
 

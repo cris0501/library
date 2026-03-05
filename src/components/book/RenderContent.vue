@@ -7,6 +7,10 @@
     <template v-if="item.kind === 'paragraph'">
       <div class="display-block my-4"></div>
     </template>
+    
+    <template v-if="item.kind === 'backslash'">
+      <span class="display-inline ml-2">\</span>
+    </template>
   
     <template v-if="item.kind === 'newline'">
       <br /><br />
@@ -36,6 +40,10 @@
       <OrderList :content="item.content" v-if="item.ordered" />
       <UnorderList :content="item.content" v-else />
     </template>
+    
+    <template v-else-if="item.kind === 'block'">
+      <Block :items="item.content" />
+    </template>
 
     <template v-else-if="item.kind === 'note'">
       <Note :title="item.params?.join(', ')" :content="item.content" />
@@ -49,9 +57,11 @@
   import OrderList from './OrderList.vue'
   import UnorderList from './UnorderList.vue'
   import Note from './Note.vue'
+  import Block from './Block.vue'
 
   defineProps({
     item: { required: true }
   })
 </script>
+
 
