@@ -47,17 +47,21 @@
   import RenderContent from '../components/book/RenderContent.vue'
   
   const data = ref([])
+  const _refs = ref([])
   const fontSize = ref(1.2)
   
-  
-    const activeNoteId = ref(null)
-    provide('activeNoteId', activeNoteId)
+  const activeNoteId = ref(null)
+  provide('activeNoteId', activeNoteId)
+  provide('refs', _refs)
   
   onMounted(() => {
     fetch('/books/test.json')
       .then(r => r.json())
       .then(r => {
-        setTimeout(() => { data.value = r }, 1500)
+        setTimeout(() => {
+          data.value = r.content ? r.content : {}
+          _refs.value = r.refs ? r.refs : []
+        }, 2000)
       })
       .catch(console.error)
   })

@@ -8,12 +8,16 @@
       <div class="display-block my-4"></div>
     </template>
     
-    <template v-if="item.kind === 'backslash'">
+    <template v-else-if="item.kind === 'backslash'">
       <span class="display-inline ml-2">\</span>
     </template>
   
     <template v-if="item.kind === 'newline'">
       <br /><br />
+    </template>
+    
+    <template v-else-if="item.kind === 'figure'">
+      <Figure :item="item" />
     </template>
 
     <strong v-else-if="item.kind === 'bold'" class="font-bold font-nunito">
@@ -33,12 +37,19 @@
     </em>
 
     <template v-else-if="item.kind === 'math'">
-      <Equation :raw="item.raw" :displayMode="item.mode === 'display'" />
+      <Equation
+        :raw="item.raw"
+        :displayMode="item.mode === 'display'"
+        :id="item.id"
+      />
     </template>
 
     <template v-else-if="item.kind === 'list'">
-      <OrderList :content="item.content" v-if="item.ordered" />
-      <UnorderList :content="item.content" v-else />
+      <List :content="item.content" :ordered="item.ordered" :id="item.id"/>
+    </template>
+    
+    <template v-else-if="item.kind === 'label'">
+      <div :id="item.id" class="inline"></div>
     </template>
     
     <template v-else-if="item.kind === 'block'">
@@ -49,19 +60,42 @@
       <Note :title="item.params?.join(', ')" :content="item.content" />
     </template>
 
+    <template v-else-if="item.kind === 'ref'">
+      <a
+        :href="'#' + item.target"
+        class="inline cursor-pointer text-amber-600 hover:text-amber-700 underline mx-2"
+      >
+        {{ findRef(item.target) }}
+      </a>
+    </template>
+
   </template>
 </template>
 
 <script setup>
+  import { inject } from 'vue'
   import Equation from './Equation.vue'
-  import OrderList from './OrderList.vue'
-  import UnorderList from './UnorderList.vue'
+  import List from './List.vue'
   import Note from './Note.vue'
   import Block from './Block.vue'
+  import Figure from './Figure.vue'
 
   defineProps({
     item: { required: true }
   })
+
+  const _refs = inject('refs')
+  const refsData = _refs?.value || _refs
+  
+  const findRef = (_id) => {
+    if (_id && refsData && _id in refsData) {
+      return `(${refsData[_id].index})`
+    }
+    
+    return '[?]'
+  }
 </script>
+
+
 
 

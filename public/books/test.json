@@ -1,170 +1,248 @@
-[
-  {
-    "kind": "bold",
-    "content": [
-      "Fichero general de prueba"
-    ]
-  },
-  {
-    "kind": "paragraph"
-  },
-  "Este fichero no contiene informacion ordenada o con una finalidad.",
-  {
-    "kind": "italic",
-    "content": [
-      "Solo lo uso para testar nuevas features."
-    ]
-  },
-  {
-    "kind": "newline"
-  },
-  {
-    "kind": "paragraph"
-  },
-  "Es por ello que tiene espacios, no mantiene una estructura clara y tampoco sigue un patron particular, inclusive, agregare de forma intencional malas practicas, con la intencion de llevar al limite este parser.",
-  {
-    "kind": "paragraph"
-  },
-  {
-    "kind": "list",
-    "ordered": true,
-    "content": [
-      {
-        "kind": "item",
-        "content": [
-          "Test de enumeracion"
-        ]
-      },
-      {
-        "kind": "item",
-        "content": [
-          "Agregamos un segundo item"
-        ]
-      },
-      {
-        "kind": "item",
-        "content": [
-          "Prueba para cerar el anterior"
-        ]
-      }
-    ]
-  },
-  {
-    "kind": "paragraph"
-  },
-  {
-    "kind": "list",
-    "ordered": false,
-    "content": [
-      {
-        "kind": "item",
-        "content": [
-          "Test de lista"
-        ]
-      },
-      {
-        "kind": "item",
-        "content": [
-          "Prueba con inline math",
-          {
-            "kind": "math",
-            "mode": "inline",
-            "raw": "\\int 2x^{3y}"
-          }
-        ]
-      },
-      {
-        "kind": "item",
-        "content": [
-          "Cierre implicito del anterior"
-        ]
-      }
-    ]
-  },
-  {
-    "kind": "paragraph"
-  },
-  {
-    "kind": "math",
-    "mode": "display",
-    "raw": "E = mc^2"
-  },
-  {
-    "kind": "paragraph"
-  },
-  "Dentro de cada elemento se debe restringir el contenido que se puede escribir, ie, que pasa si dentro de una",
-  {
-    "kind": "note",
-    "params": [
-      "nota"
-    ],
-    "content": [
-      "Elemento flotante que sirve para agregar aclaraciones, referencias o incluso enlaces"
-    ]
-  },
-  "intentasemos agregar elementos como",
-  {
-    "kind": "note",
-    "params": [
-      "equations"
-    ],
-    "content": [
-      "Son elementos demaciado grandes que haria que una nota fuese muy grande"
-    ]
-  },
-  ", por ello, inline_only sirve para restringir esto",
-  {
-    "kind": "paragraph"
-  },
-  "Creamos ahora un bloque, que permite agrupar elementos y mostrarlos mediante botones:",
-  {
-    "kind": "block",
-    "content": [
-      {
-        "kind": "item",
-        "content": [
-          "Son utiles para mostrar distintas demostraciones del mismo elemento. Por ejemplo, en Topologia se puede abordar desde 2 perspectirvas, por un lado usar metricas y por otro lado, el concepto de bolas. Creo que puede ser util no tratarlos de forma indistinta puesto que, aun que las",
-          {
-            "kind": "note",
-            "params": [
-              "bolas"
-            ],
-            "content": [
-              "Una bola es un subconjunto de",
-              {
-                "kind": "math",
-                "mode": "inline",
-                "raw": "R^n"
-              }
-            ]
-          },
-          "aparecen como una consecuencia de tener una metrica, las bolas por si mismas tambien son un concepto que no necesariamente requeiren de tener definida una metrica."
-        ]
-      },
-      {
-        "kind": "item",
-        "content": [
-          "Uno de los problemas al crear este entorno es la clara separacion de los distintos bloques.",
-          {
-            "kind": "paragraph"
-          },
-          "En primera instancia, se intento con un comando tipo",
-          {
-            "kind": "backslash"
-          },
-          "block { c1 } { c2 } { ... Pero esto es un problema porque la cantidad de argumentos o \"subbloques\" es variable y eso hace que crear un registro se vuelva mas complejo y determinar el cierre tambien."
-        ]
-      },
-      {
-        "kind": "item",
-        "content": [
-          "Si bien, no me agrada del todo usar items, es verdad que es mucho mas simple usar items e identaciones para organizar el codigo"
-        ]
-      }
-    ]
-  },
-  {
-    "kind": "paragraph"
-  },
-  "Y los bloques a su vez, puede contener cualquier elemento que se requiera, tanto ecuaciones como imagenes, notas, etc."
-]
+{
+  "content": [
+    {
+      "kind": "bold",
+      "content": [
+        "Fichero general de prueba"
+      ]
+    },
+    {
+      "kind": "paragraph"
+    },
+    "Este fichero no contiene informacion ordenada o con una finalidad.",
+    {
+      "kind": "italic",
+      "content": [
+        "Solo lo uso para testar nuevas features."
+      ]
+    },
+    {
+      "kind": "newline"
+    },
+    {
+      "kind": "paragraph"
+    },
+    "Es por ello que tiene espacios, no mantiene una estructura clara y tampoco sigue un patron particular, inclusive, agregare de forma intencional malas practicas, con la intencion de llevar al limite este parser.",
+    {
+      "kind": "paragraph"
+    },
+    {
+      "kind": "list",
+      "ordered": true,
+      "content": [
+        {
+          "kind": "item",
+          "content": [
+            "Test de enumeracion"
+          ]
+        },
+        {
+          "kind": "item",
+          "content": [
+            "Agregamos un segundo item"
+          ]
+        },
+        {
+          "kind": "item",
+          "content": [
+            {
+              "kind": "list",
+              "ordered": true,
+              "content": [
+                {
+                  "kind": "item",
+                  "content": [
+                    "Lista anidada"
+                  ]
+                },
+                {
+                  "kind": "item",
+                  "content": [
+                    "Auto cierre de etiqueta"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "paragraph"
+    },
+    {
+      "kind": "list",
+      "ordered": false,
+      "id":"eq:einstein",
+      "index":1,
+      "content": [
+        {
+          "kind": "item",
+          "content": [
+            "Test de lista"
+          ]
+        },
+        {
+          "kind": "item",
+          "content": [
+            "Prueba con inline math",
+            {
+              "kind": "math",
+              "mode": "inline",
+              "raw": "\\int 2x^{3y}"
+            }
+          ]
+        },
+        {
+          "kind": "item",
+          "content": [
+            "Cierre implicito del anterior"
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "paragraph"
+    },
+    {
+      "kind": "math",
+      "mode": "display",
+      "raw": "E = mc^2"
+    },
+    {
+      "kind": "paragraph"
+    },
+    "Dentro de cada elemento se debe restringir el contenido que se puede escribir, ie, que pasa si dentro de una",
+    {
+      "kind": "note",
+      "params": [
+        "nota"
+      ],
+      "content": [
+        "Elemento flotante que sirve para agregar aclaraciones, referencias o incluso enlaces"
+      ]
+    },
+    "intentasemos agregar elementos como",
+    {
+      "kind": "note",
+      "params": [
+        "equations"
+      ],
+      "content": [
+        "Son elementos demaciado grandes que haria que una nota fuese muy grande"
+      ]
+    },
+    ", por ello, inline_only sirve para restringir esto",
+    {
+      "kind": "paragraph"
+    },
+    {
+      "kind": "figure",
+      "content": [
+        {
+          "kind": "image",
+          "options": [
+            "50"
+          ],
+          "params": [
+            "img/topologia.png"
+          ]
+        },
+        {
+          "kind": "caption",
+          "content": [
+            "Prueba de imagen"
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "paragraph"
+    },
+    "Creamos ahora un bloque, que permite agrupar elementos y mostrarlos mediante botones:",
+    {
+      "kind": "block",
+      "content": [
+        {
+          "kind": "item",
+          "content": [
+            "Son utiles para mostrar distintas demostraciones del mismo elemento. Por ejemplo, en Topologia se puede abordar desde 2 perspectirvas, por un lado usar metricas y por otro lado, el concepto de bolas. Creo que puede ser util no tratarlos de forma indistinta puesto que, aun que las",
+            {
+              "kind": "note",
+              "params": [
+                "bolas"
+              ],
+              "content": [
+                "Una bola es un subconjunto de",
+                {
+                  "kind": "math",
+                  "mode": "inline",
+                  "raw": "R^n"
+                }
+              ]
+            },
+            "aparecen como una consecuencia de tener una metrica, las bolas por si mismas tambien son un concepto que no necesariamente requeiren de tener definida una metrica."
+          ]
+        },
+        {
+          "kind": "item",
+          "content": [
+            "Uno de los problemas al crear este entorno es la clara separacion de los distintos bloques.",
+            {
+              "kind": "paragraph"
+            },
+            "En primera instancia, se intento con un comando tipo",
+            {
+              "kind": "backslash"
+            },
+            "block \\{ c1 \\} \\{ c2 \\} \\{ ... Pero esto es un problema porque la cantidad de argumentos o \"subbloques\" es variable y eso hace que crear un registro se vuelva mas complejo y determinar el cierre tambien."
+          ]
+        },
+        {
+          "kind": "item",
+          "content": [
+            "Si bien, no me agrada del todo usar items, es verdad que es mucho mas simple usar items e identaciones para organizar el codigo"
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "paragraph"
+    },
+    "Y los bloques a su vez, puede contener cualquier elemento que se requiera, tanto ecuaciones como imagenes, notas, etc.",
+    {
+      "kind": "paragraph"
+    },
+    "Y ahora integramos referencias. Esto se logro con un diccionario label: \\{ id, index \\} , asi cuando se crea una nueva referencia, entonces tenemos la key y automaticamente, un contador. Los contadores formales aun no se agregan.",
+    {
+      "kind": "paragraph"
+    },
+    {
+      "kind": "math",
+      "mode": "display",
+      "raw": "E = mc^2"
+    },
+    {
+      "kind": "paragraph"
+    },
+    "Y se citan con",
+    {
+      "kind": "backslash"
+    },
+    "ref \\{ id \\} , ej,",
+    {
+      "kind": "ref",
+      "target": "eq:einstein",
+      "index": 1
+    },
+    {
+      "kind": "paragraph"
+    },
+    "Como se agregan al output como hermano del arbol, este ya no regresa un array sino un diccionario."
+  ],
+  "refs": {
+    "eq:einstein": {
+      "index": 1
+    }
+  }
+}
