@@ -62,7 +62,7 @@
 
     <template v-else-if="item.kind === 'ref'">
       <a
-        :href="'#' + item.target"
+        :href="'book#' + item.target"
         class="inline cursor-pointer text-amber-600 hover:text-amber-700 underline mx-2"
         @click="savePosition" 
       >

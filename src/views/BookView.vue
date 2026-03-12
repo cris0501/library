@@ -1,7 +1,7 @@
 <template>
   <!-- Topbar -->
   <div class="flex justify-between items-center w-full h-[55px] left-0 px-6 bg-primary z-10 shadow-sm">
-    <RouterLink to="/">
+    <RouterLink :to="{name: 'home'}">
       <i class="icon icon-left text-2xl text-gray-900" />
     </RouterLink>
     <div class="flex items-center gap-3">
@@ -80,7 +80,7 @@
   provide('goBack', goBack)
   
   onMounted(() => {
-    fetch('/books/test.json')
+    fetch(`${import.meta.env.BASE_URL}books/test.json`)
       .then(r => r.json())
       .then(r => {
         setTimeout(() => {
