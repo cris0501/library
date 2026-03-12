@@ -64,6 +64,7 @@
       <a
         :href="'#' + item.target"
         class="inline cursor-pointer text-amber-600 hover:text-amber-700 underline mx-2"
+        @click="savePosition" 
       >
         {{ findRef(item.target) }}
       </a>
@@ -86,6 +87,7 @@
 
   const _refs = inject('refs')
   const refsData = _refs?.value || _refs
+  const savePosition = inject('savePosition')
   
   const findRef = (_id) => {
     if (_id && refsData && _id in refsData) {

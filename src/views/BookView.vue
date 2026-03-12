@@ -24,7 +24,6 @@
     :style="{ fontSize: fontSize + 'em' }"
   >
     <div v-if="data.length">
-      <!-- Iteramos sobre el array del book -->
       <RenderContent
         v-for="(item, index) in data"
         :key="'rc-' + index"
@@ -38,6 +37,8 @@
       </div>
       <p class="font-plex font-bold text-xl text-gray-700">Leyendo contenido...</p>
     </div>
+
+    <BtnScroll />
   </div>
 </template>
 
@@ -45,14 +46,38 @@
   import { ref, onMounted, provide } from 'vue'
   import { RouterLink } from 'vue-router'
   import RenderContent from '../components/book/RenderContent.vue'
+  import BtnScroll from '../components/book/BtnScroll.vue'
   
   const data = ref([])
   const _refs = ref([])
   const fontSize = ref(1.2)
+  const navigationStack = ref([])
   
   const activeNoteId = ref(null)
   provide('activeNoteId', activeNoteId)
   provide('refs', _refs)
+  
+  const savePosition = () => {
+    navigationStack.value.push(window.scrollY)
+  }
+  
+  const goBack = () => {
+    if (navigationStack.value.length > 0) {
+      const lastPos = navigationStack.value.pop()
+      window.scrollTo({
+        top: lastPos,
+        behavior: 'smooth'
+      })
+      
+      if (navigationStack.value.length === 0) {
+        history.replaceState(null, null, ' ')
+      }
+    }
+  }
+  
+  provide('navigationStack', navigationStack)
+  provide('savePosition', savePosition)
+  provide('goBack', goBack)
   
   onMounted(() => {
     fetch('/books/test.json')
@@ -66,5 +91,7 @@
       .catch(console.error)
   })
 </script>
+
+
 
 
