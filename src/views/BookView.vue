@@ -1,10 +1,13 @@
 <template>
   <!-- Topbar -->
-  <div class="flex justify-between items-center w-full h-[55px] left-0 px-6 bg-primary z-10 shadow-sm">
+  <div class="sticky top-0 left-0 flex justify-between items-center w-full h-[55px] px-6 bg-primary z-10 shadow-sm">
     <RouterLink :to="{name: 'home'}">
       <i class="icon icon-left text-2xl text-gray-900" />
     </RouterLink>
     <div class="flex items-center gap-3">
+      <button @click="menuOpen = true" class="p-2">
+        <i class="icon icon-menu text-2xl text-gray-900"></i>
+      </button>
       <span class="font-plex font-bold text-sm text-gray-800">T. Letra</span>
       <input
         type="range"
@@ -18,9 +21,12 @@
     </div>
   </div>
 
+  <!-- Menu Lateral -->
+  <MenuLateral :isOpen="menuOpen" @close="menuOpen = false" />
+
   <!-- Content -->
   <div
-    class="w-full lg:w-5/6 px-4 py-6 mx-auto mt-4 mb-16 text-justify"
+    class="w-full lg:w-5/6 px-4 py-6 mx-auto mt-20 mb-16 text-justify"
     :style="{ fontSize: fontSize + 'em' }"
   >
     <div v-if="data.length">
@@ -47,11 +53,14 @@
   import { RouterLink } from 'vue-router'
   import RenderContent from '../components/book/RenderContent.vue'
   import BtnScroll from '../components/book/BtnScroll.vue'
+  import MenuLateral from '../components/book/MenuLateral.vue'
   
   const data = ref([])
   const _refs = ref([])
   const fontSize = ref(1.2)
   const navigationStack = ref([])
+  const menuOpen = ref(false)
+  const book = "test" // ToDo> Implement {nameBook} in router
   
   const activeNoteId = ref(null)
   provide('activeNoteId', activeNoteId)
@@ -80,7 +89,7 @@
   provide('goBack', goBack)
   
   onMounted(() => {
-    fetch(`${import.meta.env.BASE_URL}books/test.json`)
+    fetch(`${import.meta.env.BASE_URL}books/${book}/test.json`)
       .then(r => r.json())
       .then(r => {
         setTimeout(() => {

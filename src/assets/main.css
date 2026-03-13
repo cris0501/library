@@ -90,3 +90,15 @@
 .icon-left:before {
   content: "\e909";
 }
+.icon-menu:before {
+  content: "\e910";
+}
+.icon-close:before {
+  content: "\e911";
+}
+.icon-code:before {
+  content: "\e912";
+}
+.icon-highlight:before {
+  content: "\e913";
+}

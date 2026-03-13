@@ -64,7 +64,7 @@
       <a
         :href="'book#' + item.target"
         class="inline cursor-pointer text-amber-600 hover:text-amber-700 underline mx-2"
-        @click="savePosition" 
+        @click.prevent="handleRefClick(item.target)"
       >
         {{ findRef(item.target) }}
       </a>
@@ -88,6 +88,7 @@
   const _refs = inject('refs')
   const refsData = _refs?.value || _refs
   const savePosition = inject('savePosition')
+  const navigationStack = inject('navigationStack')
   
   const findRef = (_id) => {
     if (_id && refsData && _id in refsData) {
@@ -95,6 +96,16 @@
     }
     
     return '[?]'
+  }
+
+  const handleRefClick = (target) => {
+    if (navigationStack) {
+      navigationStack.value.push(window.scrollY)
+    }
+    const element = document.getElementById(target)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }
   }
 </script>
 
