@@ -11,7 +11,7 @@
       
       <img
         v-if="subItem.kind === 'image'"
-        :src="subItem.params[0]"
+        :src="bookUrl+subItem.params[0]"
         class="w-full h-auto rounded-lg shadow-md"
         :alt="captionText"
       />
@@ -34,6 +34,9 @@
 <script setup>
   import { computed } from 'vue'
   import RenderContent from './RenderContent.vue'
+
+  const book = "test" // ToDo> Implement {nameBook} in router
+  const bookUrl = `${import.meta.env.BASE_URL}books/${book}/`
 
   const props = defineProps({
     item: { type: Object, required: true }

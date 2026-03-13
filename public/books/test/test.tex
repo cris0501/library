@@ -1,0 +1,76 @@
+\textbf{ Fichero general de prueba }
+
+Este fichero no contiene informacion ordenada o con una finalidad.
+\textit { Solo lo uso para testar nuevas features. } \newline
+
+Es por ello que tiene espacios, no mantiene una estructura clara y tampoco
+sigue un patron particular, inclusive, agregare de forma intencional malas
+practicas, con la intencion de llevar al limite este parser.
+
+\begin{enumerate}
+    \item Test de enumeracion
+    \item Agregamos un segundo item
+    \item \begin{enumerate}
+            \item Lista anidada
+            \item Auto cierre de etiqueta
+          \end{enumerate}
+\end{enumerate}
+
+\begin{itemize}
+    \item Test de lista
+    \item Prueba con inline math $\int 2x^{3y}$
+    \item Cierre implicito del anterior
+\end{itemize}
+
+\begin{equation}
+    E = mc^2
+\end{equation}
+
+Dentro de cada elemento se debe restringir el contenido que se puede escribir,
+ie, que pasa si dentro de una \note{nota}{ Elemento flotante que sirve para
+agregar aclaraciones, referencias o incluso enlaces } intentasemos agregar % test comment
+elementos como \note{equations}{ Son elementos demaciado grandes que haria que
+una nota fuese muy grande}, por ello, inline_only sirve para restringir esto
+%\note{test}{ Intentando romper notas con $$maths$$ no simples }
+
+\begin{figure}
+  \includegraphics[80]{img/topologia.png}
+  \caption{Prueba de imagen}
+\end{figure}
+
+Creamos ahora un bloque, que permite agrupar elementos y mostrarlos mediante botones:
+\begin{block}
+   \item Son utiles para mostrar distintas demostraciones del mismo elemento.
+        Por ejemplo, en Topologia se puede abordar desde 2 perspectirvas, por un lado
+        usar metricas y por otro lado, el concepto de bolas.
+        Creo que puede ser util no tratarlos de forma indistinta puesto que, aun que
+        las \note{bolas}{Una bola es un subconjunto de $R^n$} aparecen como una
+        consecuencia de tener una metrica, las bolas
+        por si mismas tambien son un concepto que no necesariamente requeiren de
+        tener definida una metrica.
+    \item Uno de los problemas al crear este entorno es la clara separacion de los
+        distintos bloques.
+        
+        En primera instancia, se intento con un comando tipo \backslash block\{c1\}\{c2\}\{...
+        Pero esto es un problema porque la cantidad de argumentos o "subbloques"
+        es variable y eso hace que crear un registro se vuelva mas complejo y determinar
+        el cierre tambien.
+    \item Si bien, no me agrada del todo usar items, es verdad que es mucho mas simple
+        usar items e identaciones para organizar el codigo
+\end{block}
+
+Y los bloques a su vez, puede contener cualquier elemento que se requiera, tanto ecuaciones
+como imagenes, notas, etc.
+
+Y ahora integramos referencias. Esto se logro con un diccionario label:\{id, index\}, asi cuando
+se crea una nueva referencia, entonces tenemos la key y automaticamente, un contador. Los
+contadores formales aun no se agregan.
+
+\begin{equation}
+    E = mc^2
+\end{equation}
+\label{eq:einstein}
+
+Y se citan con \backslash ref\{id\}, ej, \ref{eq:einstein}
+
+Como se agregan al output como hermano del arbol, este ya no regresa un array sino un diccionario.
