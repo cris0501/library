@@ -47,17 +47,26 @@
         </ul>
       </div>
 
-      <!-- LaTeX Original -->
+      <!-- LaTeX Original / Mostrar Webbook -->
       <div class="mb-8">
         <h3 class="font-plex font-bold text-sm text-gray-600 uppercase tracking-wider mb-3">
           Código Fuente
         </h3>
         <button
+          v-if="viewMode === 'rendered'"
           class="w-full flex items-center py-3 px-4 rounded bg-gray-200 hover:bg-gray-300 transition-colors"
           @click="openLatex"
         >
           <i class="icon icon-code text-lg text-gray-700 mr-3"></i>
           <span class="font-plex text-sm text-gray-700">Ver LaTeX Original</span>
+        </button>
+        <button
+          v-else
+          class="w-full flex items-center py-3 px-4 rounded bg-gray-200 hover:bg-gray-300 transition-colors"
+          @click="showWebbook"
+        >
+          <i class="icon icon-book text-lg text-gray-700 mr-3"></i>
+          <span class="font-plex text-sm text-gray-700">Mostrar Webbook</span>
         </button>
       </div>
 
@@ -104,10 +113,11 @@
 import { inject, computed } from 'vue'
 
 const props = defineProps({
-  isOpen: { type: Boolean, default: false }
+  isOpen: { type: Boolean, default: false },
+  viewMode: { type: String, default: 'rendered' }
 })
 
-const emit = defineEmits(['close'])
+const emit = defineEmits(['close', 'viewSource', 'viewRendered'])
 
 const _refs = inject('refs')
 const refsData = computed(() => {
@@ -130,6 +140,12 @@ const handleRefClick = (key) => {
 }
 
 const openLatex = () => {
-  console.log('Abrir LaTeX - funcionalidad en desarrollo')
+  emit('viewSource')
+  close()
+}
+
+const showWebbook = () => {
+  emit('viewRendered')
+  close()
 }
 </script>
