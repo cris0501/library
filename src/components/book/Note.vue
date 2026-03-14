@@ -1,41 +1,43 @@
 <template>
-  <span class="inline-block relative">
-    <span
-      ref="anchor"
-      class="font-bold cursor-pointer underline decoration-double mx-1 text-amber-600 hover:text-amber-700"
-      @click="toggleNote"
-    >
-      {{ Array.isArray(title) ? title[0] : title }}
-    </span>
+  <!-- Solo el anchor, limpio -->
+  <span
+    ref="anchor"
+    class="inline-block font-bold cursor-pointer underline decoration-double mx-1 text-amber-600 hover:text-amber-700"
+    @click="toggleNote"
+  >
+    {{ Array.isArray(title) ? title[0] : title }}
+  </span>
 
-    <!-- Overlay solo en móvil -->
-    <Teleport to="body">
+  <!-- Todo lo demás vive en el body siempre -->
+  <Teleport to="body">
+    <div v-if="show">
+      <!-- Overlay: en móvil oscuro, en desktop transparente pero cierra -->
       <div
-        v-if="show && isMobile"
-        class="fixed inset-0 z-40 bg-black/20"
+        class="fixed inset-0 z-40"
+        :class="isMobile ? 'bg-black/20' : ''"
         @click="toggleNote"
       />
-    </Teleport>
 
-    <Teleport to="body" :disabled="!isMobile">
+      <!-- Flecha solo desktop -->
       <div
-        v-if="show"
+        v-if="!isMobile"
+        class="fixed z-50 w-0 h-0
+               border-l-[10px] border-l-transparent
+               border-r-[10px] border-r-transparent
+               border-t-[10px] border-t-yellow-400"
+        :style="arrowStyle"
+      />
+
+      <!-- Nota -->
+      <div
         ref="noteElement"
-        :class="noteClasses"
+        class="fixed z-50 rounded-xl bg-yellow-400 p-3 shadow-lg font-nunito text-sm text-gray-800"
+        :style="noteStyle"
       >
         <RenderContent v-for="(item, i) in content" :key="'note-'+i" :item="item" />
       </div>
-    </Teleport>
-
-    <!-- Flecha solo en desktop -->
-    <span
-      v-if="show && !isMobile"
-      class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 z-20
-             w-0 h-0 border-l-[10px] border-l-transparent
-             border-r-[10px] border-r-transparent
-             border-t-[10px] border-t-yellow-400"
-    />
-  </span>
+    </div>
+  </Teleport>
 </template>
 
 <script setup>
@@ -49,9 +51,7 @@ defineProps({
 
 const noteElement = ref(null)
 const anchor = ref(null)
-const positionClass = ref('left-1/2 -translate-x-1/2')
 
-// Breakpoint reactivo
 const isMobile = ref(false)
 const checkMobile = () => { isMobile.value = window.innerWidth < 768 }
 
@@ -65,24 +65,57 @@ const instanceId = Symbol()
 const activeNoteId = inject('activeNoteId')
 const show = computed(() => activeNoteId.value === instanceId)
 
-const toggleNote = async () => {
-  if (show.value) {
-    activeNoteId.value = null
-    positionClass.value = 'left-1/2 -translate-x-1/2'
-  } else {
-    activeNoteId.value = instanceId
+const toggleNote = () => {
+  activeNoteId.value = show.value ? null : instanceId
+}
+
+// Posición calculada
+const notePos = ref({ top: 0, left: 0, arrowLeft: 0 })
+
+const calculatePosition = async () => {
+  await nextTick()
+  if (!anchor.value || !noteElement.value) return
+
+  const anchorRect = anchor.value.getBoundingClientRect()
+  const noteRect = noteElement.value.getBoundingClientRect()
+  const margin = 8
+
+  // Centrar horizontalmente sobre el anchor
+  let left = anchorRect.left + (anchorRect.width / 2) - (noteRect.width / 2)
+
+  // Clamp para no salir del viewport
+  left = Math.max(margin, Math.min(left, window.innerWidth - noteRect.width - margin))
+
+  const top = anchorRect.top - noteRect.height - 12
+
+  notePos.value = {
+    top,
+    left,
+    arrowLeft: anchorRect.left + (anchorRect.width / 2)
   }
 }
 
-const noteClasses = computed(() => {
-  const base = 'rounded-xl bg-yellow-400 p-3 shadow-lg font-nunito text-sm text-gray-800'
+const noteStyle = computed(() => {
   if (isMobile.value) {
-    // Centrado fijo, 90% del ancho
-    return `fixed z-50 left-[5vw] w-[90vw] top-1/2 -translate-y-1/2 ${base}`
+    return {
+      left: '5vw',
+      width: '90vw',
+      top: '50%',
+      transform: 'translateY(-50%)'
+    }
   }
-  // Desktop: tooltip absoluto como antes
-  return `absolute bottom-full z-10 mb-3 w-max max-w-[350px] ${positionClass.value} ${base}`
+  return {
+    top: `${notePos.value.top}px`,
+    left: `${notePos.value.left}px`,
+    maxWidth: '350px',
+    width: 'max-content'
+  }
 })
+
+const arrowStyle = computed(() => ({
+  top: `${notePos.value.top + noteElement.value?.offsetHeight}px`,
+  left: `${notePos.value.arrowLeft - 10}px`
+}))
 
 watch(show, async (isShowing) => {
   if (isShowing && !isMobile.value) {
@@ -91,4 +124,3 @@ watch(show, async (isShowing) => {
   }
 })
 </script>
-
