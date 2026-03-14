@@ -5,14 +5,6 @@
       <i class="icon icon-left text-2xl text-gray-900" />
     </RouterLink>
     <div class="flex items-center gap-3">
-      <button
-        v-if="viewMode === 'source'"
-        @click="viewMode = 'rendered'"
-        class="flex items-center gap-1"
-      >
-        <i class="icon icon-book text-2xl text-gray-900"></i>
-        <span class="font-plex font-bold text-sm text-gray-800">Webbook</span>
-      </button>
       <button @click="menuOpen = true" class="p-2">
         <i class="icon icon-menu text-2xl text-gray-900"></i>
       </button>
@@ -62,7 +54,7 @@
     class="w-full lg:w-5/6 px-4 py-6 mx-auto mt-20 mb-16"
     :style="{ fontSize: fontSize + 'em' }"
   >
-    <div v-if="texContent" class="tex-source">
+    <div v-if="texContent" :class="[tex-source, 'overflow-x-scroll']">
       <pre>{{ texContent }}</pre>
     </div>
     <div v-else class="flex flex-col justify-center items-center h-[70dvh] gap-6">
@@ -152,3 +144,4 @@
   letter-spacing: 0.01em;
 }
 </style>
+

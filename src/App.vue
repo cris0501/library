@@ -1,22 +1,25 @@
 <template>
   <header v-if="showHeader">
-    <div class="fixed w-full bg-primary px-5 py-3 z-10">
-      <nav class="flex px-6 my-2 lg:px-24">
+    <div class="w-full bg-primary px-2 lg:px-5 py-3 z-10">
+      <nav class="flex px-5 my-2 lg:px-24">
         <div class="flex flex-1 items-center">
           <RouterLink :to="{name: 'home'}">
             <span class="flex items-center text-xl font-plex font-bold">
-              <i class="icon icon-book mr-2"></i> Biblioteca
+              <i class="icon icon-book mr-2"></i> 
+              <span class=" hidden md:flex"> Biblioteca </span>
             </span>
           </RouterLink>
         </div>
         <div class="flex items-center space-x-3">
           <RouterLink :to="{name: 'feat'}">
-            <span class="font-bold btn"> Features </span>
+            <span class="font-bold btn hidden md:flex"> Features </span>
+            <span class="font-bold btn md:hidden"> Feats </span>
           </RouterLink>
           <RouterLink :to="{name: 'doc'}">
-            <span class="font-bold btn"> Documentation </span>
+            <span class="font-bold btn hidden md:flex"> Documentation </span>
+            <span class="font-bold btn md:hidden"> Docs </span>
             </RouterLink>
-            <RouterLink :to="{name: 'book'}">
+          <RouterLink :to="{name: 'book'}" class="hidden md:flex">
             <span class="font-bold btn-primary"> Start Learning </span>
           </RouterLink>
         </div>
@@ -38,4 +41,6 @@
     return route.name !== 'book'
   })
 </script>
+
+
 

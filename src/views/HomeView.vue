@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div class="flex flex-col justify-center min-h-[55dvh] bg-yellow-400 rounded-b-[50px] mb-[5%]">
+    <div class="flex flex-col justify-center min-h-[55dvh] bg-yellow-400 rounded-b-[35px] pt-[25px] lg:pt-6 pb-6 mb-[5%]">
       <div class="flex flex-col items-center w-2/3 mx-auto">
         <span class="font-plex font-bold text-6xl mb-5"> Learn Through Play </span>
         <p class="font-nunito text-2xl text-gray-800 text-center"> 
@@ -18,17 +18,17 @@
     </div>
   </header>
   
-  <article class="flex flex-col items-center px-6 lg:px-24 mb-[5%]">
+  <article class="flex flex-col items-center px-2 pb-6 md:px-6 lg:px-24 mb-[5%]">
     <span class="font-plex font-bold text-center text-4xl w-full block mb-16"> How EduWords works </span>
     <section class="relative">
-      <div class="absolute left-8 top-0 h-full w-0.5 bg-gradient-to-b from-yellow-400 via-yellow-500 to-yellow-600"></div>
+      <div class="absolute left-6 top-0 h-full w-0.5 bg-gradient-to-b from-yellow-400 via-yellow-500 to-yellow-600"></div>
       <div class="space-y-12">
 
         <div class="relative flex items-center" v-for="(item, index) in timeLine" :key="index+'tL'">
-          <div class="absolute left-8 w-8 h-8 bg-yellow-400 rounded-full transform -translate-x-1/2 flex items-center justify-center">
+          <div class="absolute left-6 w-8 h-8 bg-yellow-400 rounded-full transform -translate-x-1/2 flex items-center justify-center">
             <i :class="['icon', `icon-${item.icon}`, 'text-white']"></i>
           </div>
-          <div class="ml-16 bg-white p-6 rounded-lg shadow-lg border-l-4 border-yellow-400 hover:shadow-xl transition-shadow duration-300">
+          <div class="ml-14 bg-white p-6 rounded-lg shadow-lg border-l-4 border-yellow-400 hover:shadow-xl transition-shadow duration-300">
             <span class="text-xl font-semibold mb-2"> {{ item.title }} </span>
             <p class="text-gray-600"> {{ item.info }} </p>
           </div>
@@ -38,16 +38,16 @@
     </section>
   </article>
 
-  <article class="flex flex-col p-6 lg:p-24 bg-gray-50">
+  <article class="flex flex-col px-2 py-12 md:px-6 lg:p-24 bg-gray-50">
     <span class="font-plex font-bold text-center text-4xl w-full block mb-8"> Features </span>
-    <div class="flex flex-col md:flex-row items-stretch space-x-10  my-5">
-      <section class="flex-1 flex flex-col justify-center items-center border-3 border-yellow-400 rounded-xl p-4 space-y-3 min-h-[25dvh] mb-12 md:mb-0">
+    <div class="flex flex-col md:flex-row md:items-stretch md:space-x-10  my-5">
+      <section class="flex flex-col flex-1 justify-center items-center border-3 border-yellow-400 rounded-xl p-4 space-y-3 min-h-[25dvh] mb-12 md:mb-0">
         <span class="font-nunito font-bold text-2xl w-full"> LaTeX Compatibility </span>
         <div class="w-full p-3 bg-gray-200/50 rounded-xl font-jet">
           \frac{d}{dx}\left(x^2\right) = 2x
         </div>
-        <div class="w-full p-3 border-2 border-gray-200/75 rounded-xl font-jet">
-          Result
+        <div class="w-full p-3 border-2 border-gray-200/75 rounded-xl font-jet text-center">
+          <Equation raw="\frac{d}{dx}\left(x^2\right) = 2x" />
         </div>
         <p class="text-gray-700 text-sm">
           Example of LaTeX mathematical notation rendered in your content
@@ -85,7 +85,7 @@
     </div>
   </article>
 
-  <section class="flex flex-col w-2/3 mx-auto py-24">
+  <section class="flex flex-col w-5/6 md:w-2/3 mx-auto py-24">
     <span class="text-3xl text-center font-bold mb-10">Our Mission</span>
 
     <div class="bg-yellow-50 p-8 rounded-lg border-l-4 border-yellow-400 mb-10">
@@ -95,9 +95,9 @@
       </p>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="rounded-lg border-none shadow-md px-6 pt-8">
-        <div class="flex items-start space-x-5 w-full p-5">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="rounded-lg border-none shadow-md p-4 md:pt-8">
+        <div class="flex items-start justify-center space-x-5 w-full p-5">
           <span class="flex justify-center items-center bg-yellow-100 rounded-full text-[1.5rem] text-amber-600 w-12 h-12"><i class="icon icon-share"></i></span>
           <div class="flex-1 flex flex-col">
             <span class="font-bold text-xl mb-2">Sharing Knowledge</span>
@@ -183,12 +183,15 @@
   </section>
 
   <section class="flex flex-col items-stretch px-6 lg:px-24 py-20 bg-gray-50">
-
     <span class="text-3xl text-center font-bold mb-10">Future of EduWords</span>
-    <span class="text-gray-700 text-xl mx-auto mb-8">EduWords is evolving to serve you better, while remaining completely free.</span>
-    <span class="text-gray-700 text-xl mx-auto mb-8">EduWords is and will always be free to use. Creating an account unlocks additional features and ways to contribute.</span>
+    <span class="text-gray-700 text-xl mx-auto mb-8">
+      EduWords is evolving to serve you better, while remaining completely free.
+    </span>
+    <span class="text-gray-700 text-xl mx-auto mb-8">
+      EduWords is and will always be free to use. Creating an account unlocks additional features and ways to contribute.
+    </span>
 
-    <div class="flex space-x-5 mt-8">
+    <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-5 mt-8">
       <div class="flex flex-col justify-center px-6 py-4 rounded-xl border-2 space-y-3 border-gray-200 bg-white" v-for="(item, index) in features" :key="index+'ft'">
         <i :class="`icon icon-${item.icon} text-yellow-500 text-4xl`"></i><span class="font-bold text-2xl mt-2"> {{ item.title }} </span>
         <p class="test-gray-600">
@@ -211,7 +214,7 @@
         Created by Cristian R
       </span>
     </div>
-    <div class="flex items-center space-x-4">
+    <div class="hidden md:flex items-center space-x-4">
       <span class="font-nunito">
         Terms &amp; Privacy
       </span>
@@ -224,6 +227,7 @@
 
 <script setup>
   import { RouterLink } from 'vue-router'
+  import Equation from '@/components/book/Equation.vue'
 
   const timeLine = [
     {
@@ -284,4 +288,6 @@
 <style scoped>
 
 </style>
+
+
 
