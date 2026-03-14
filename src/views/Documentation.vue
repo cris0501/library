@@ -197,6 +197,7 @@ onUnmounted(() => observer?.disconnect())
 </script>
 
 <style scoped>
+@reference "tailwindcss";
 .code-inline {
   @apply bg-gray-100 text-gray-800 px-1.5 py-0.5 rounded text-[0.85em] font-mono;
 }
@@ -213,3 +214,4 @@ onUnmounted(() => observer?.disconnect())
   @apply font-semibold text-blue-700 mb-2;
 }
 </style>
+
