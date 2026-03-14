@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-center items-center w-full h-[90vh] p-20">
+  <div class="flex flex-col justify-center items-center w-full h-[90dvh] p-20">
     <p class="font-bold font-plex text-2xl">EduWords Features</p>
     
     <div class="grid grid-cols-3 gap-2 w-full features">

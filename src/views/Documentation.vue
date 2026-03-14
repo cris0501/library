@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-center items-center w-full min-h-[100vh] bg-gray-50 py-[150px]">
+  <div class="flex flex-col justify-center items-center w-full min-h-[100dvh] bg-gray-50 py-[150px]">
     <div class="w-5/6 lg:w-2/3">
       <section class="flex flex-col space-y-12 mb-12">
         <p class="text-4xl text-plex text-center font-bold">EduWords Documentation</p>

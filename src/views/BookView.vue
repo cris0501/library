@@ -46,7 +46,7 @@
       />
     </div>
 
-    <div v-else class="flex flex-col justify-center items-center h-[70vh] gap-6">
+    <div v-else class="flex flex-col justify-center items-center h-[70dvh] gap-6">
       <div class="w-16 h-16 rounded-full bg-yellow-400 flex items-center justify-center animate-pulse">
         <i class="icon icon-book text-3xl text-gray-900"></i>
       </div>
@@ -65,7 +65,7 @@
     <div v-if="texContent" class="tex-source">
       <pre>{{ texContent }}</pre>
     </div>
-    <div v-else class="flex flex-col justify-center items-center h-[70vh] gap-6">
+    <div v-else class="flex flex-col justify-center items-center h-[70dvh] gap-6">
       <div class="w-16 h-16 rounded-full bg-yellow-400 flex items-center justify-center animate-pulse">
         <i class="icon icon-code text-3xl text-gray-900"></i>
       </div>

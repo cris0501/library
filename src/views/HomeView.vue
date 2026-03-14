@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div class="flex flex-col justify-center min-h-[55vh] bg-yellow-400 rounded-b-[50px] mb-[5%]">
+    <div class="flex flex-col justify-center min-h-[55dvh] bg-yellow-400 rounded-b-[50px] mb-[5%]">
       <div class="flex flex-col items-center w-2/3 mx-auto">
         <span class="font-plex font-bold text-6xl mb-5"> Learn Through Play </span>
         <p class="font-nunito text-2xl text-gray-800 text-center"> 
@@ -41,7 +41,7 @@
   <article class="flex flex-col p-6 lg:p-24 bg-gray-50">
     <span class="font-plex font-bold text-center text-4xl w-full block mb-8"> Features </span>
     <div class="flex flex-col md:flex-row items-stretch space-x-10  my-5">
-      <section class="flex-1 flex flex-col justify-center items-center border-3 border-yellow-400 rounded-xl p-4 space-y-3 min-h-[25vh] mb-12 md:mb-0">
+      <section class="flex-1 flex flex-col justify-center items-center border-3 border-yellow-400 rounded-xl p-4 space-y-3 min-h-[25dvh] mb-12 md:mb-0">
         <span class="font-nunito font-bold text-2xl w-full"> LaTeX Compatibility </span>
         <div class="w-full p-3 bg-gray-200/50 rounded-xl font-jet">
           \frac{d}{dx}\left(x^2\right) = 2x

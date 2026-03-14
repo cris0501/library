@@ -8,79 +8,87 @@
       {{ Array.isArray(title) ? title[0] : title }}
     </span>
 
-    <div
-      v-if="show"
-      ref="noteElement"
-      :class="[
-        'absolute bottom-full z-10 mb-3 w-max max-w-[85vw] sm:max-w-[350px] rounded-xl bg-yellow-400 p-3 shadow-lg font-nunito text-sm text-gray-800',
-        positionClass
-      ]"
-    >
-      <RenderContent v-for="(item, i) in content" :key="'note-'+i" :item="item" />
-    </div>
+    <!-- Overlay solo en móvil -->
+    <Teleport to="body">
+      <div
+        v-if="show && isMobile"
+        class="fixed inset-0 z-40 bg-black/20"
+        @click="toggleNote"
+      />
+    </Teleport>
 
-    <span 
-      v-if="show"
-      class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 z-20 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[10px] border-t-yellow-400"
-    ></span>
+    <Teleport to="body" :disabled="!isMobile">
+      <div
+        v-if="show"
+        ref="noteElement"
+        :class="noteClasses"
+      >
+        <RenderContent v-for="(item, i) in content" :key="'note-'+i" :item="item" />
+      </div>
+    </Teleport>
+
+    <!-- Flecha solo en desktop -->
+    <span
+      v-if="show && !isMobile"
+      class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 z-20
+             w-0 h-0 border-l-[10px] border-l-transparent
+             border-r-[10px] border-r-transparent
+             border-t-[10px] border-t-yellow-400"
+    />
   </span>
 </template>
 
 <script setup>
-  import { ref, nextTick , inject, computed, watch } from 'vue'
-  import RenderContent from './RenderContent.vue'
-  
-  defineProps({
-    title: { required: true },
-    content: { type: Array, required: true }
-  })
+import { ref, nextTick, inject, computed, watch, onMounted, onUnmounted } from 'vue'
+import RenderContent from './RenderContent.vue'
 
-  const noteElement = ref(null)
-  const anchor = ref(null) // Referencia a la palabra
-  const positionClass = ref('left-1/2 -translate-x-1/2')
-  
-  const instanceId = Symbol()
-  const activeNoteId = inject('activeNoteId')
-  const show = computed(() => activeNoteId.value === instanceId)
-  
-  const toggleNote = async () => {
-    if (show.value) {
-      activeNoteId.value = null
-      positionClass.value = 'left-1/2 -translate-x-1/2'
-    } else {
-      activeNoteId.value = instanceId
-    }
-  }
-  
-  watch(show, async (isShowing) => {
-    if (isShowing){
-      await nextTick()
-      calculatePosition()
-    }
-  })
-  
-  const calculatePosition = () => {
-    if (!noteElement.value || !anchor.value) return
-    const noteRect = noteElement.value.getBoundingClientRect()
-    const screenWidth = window.innerWidth
-    const padding = 20
-  
-    // Centro de la palabra
-    const anchorRect = anchor.value.getBoundingClientRect()
-    const anchorCenter = anchorRect.left + (anchorRect.width / 2)
-    const halfNoteWidth = noteRect.width / 2
-  
-    if (anchorCenter - halfNoteWidth < padding) {
-      // Sale por la izquierda -> movemos a la izquierda
-      positionClass.value = 'left-0'
-    } 
-    else if (anchorCenter + halfNoteWidth > screenWidth - padding) {
-      // Sale por la derecha -> movemos a la derecha
-      positionClass.value = 'right-0'
-    } 
-    else {
-      positionClass.value = 'left-1/2 -translate-x-1/2'
-    }
-  }
+defineProps({
+  title: { required: true },
+  content: { type: Array, required: true }
+})
 
+const noteElement = ref(null)
+const anchor = ref(null)
+const positionClass = ref('left-1/2 -translate-x-1/2')
+
+// Breakpoint reactivo
+const isMobile = ref(false)
+const checkMobile = () => { isMobile.value = window.innerWidth < 768 }
+
+onMounted(() => {
+  checkMobile()
+  window.addEventListener('resize', checkMobile)
+})
+onUnmounted(() => window.removeEventListener('resize', checkMobile))
+
+const instanceId = Symbol()
+const activeNoteId = inject('activeNoteId')
+const show = computed(() => activeNoteId.value === instanceId)
+
+const toggleNote = async () => {
+  if (show.value) {
+    activeNoteId.value = null
+    positionClass.value = 'left-1/2 -translate-x-1/2'
+  } else {
+    activeNoteId.value = instanceId
+  }
+}
+
+const noteClasses = computed(() => {
+  const base = 'rounded-xl bg-yellow-400 p-3 shadow-lg font-nunito text-sm text-gray-800'
+  if (isMobile.value) {
+    // Centrado fijo, 90% del ancho
+    return `fixed z-50 left-[5vw] w-[90vw] top-1/2 -translate-y-1/2 ${base}`
+  }
+  // Desktop: tooltip absoluto como antes
+  return `absolute bottom-full z-10 mb-3 w-max max-w-[350px] ${positionClass.value} ${base}`
+})
+
+watch(show, async (isShowing) => {
+  if (isShowing && !isMobile.value) {
+    await nextTick()
+    calculatePosition()
+  }
+})
 </script>
+
