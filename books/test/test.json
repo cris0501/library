@@ -73,8 +73,6 @@
     {
       "kind": "list",
       "ordered": false,
-      "id":"eq:einstein",
-      "index":1,
       "content": [
         {
           "kind": "item",
@@ -115,9 +113,9 @@
     "Dentro de cada elemento se debe restringir el contenido que se puede escribir, ie, que pasa si dentro de una",
     {
       "kind": "note",
-      "params": [
-        "nota"
-      ],
+      "params": {
+        "title": "nota"
+      },
       "content": [
         "Elemento flotante que sirve para agregar aclaraciones, referencias o incluso enlaces"
       ]
@@ -125,9 +123,9 @@
     "intentasemos agregar elementos como",
     {
       "kind": "note",
-      "params": [
-        "equations"
-      ],
+      "params": {
+        "title": "equations"
+      },
       "content": [
         "Son elementos demaciado grandes que haria que una nota fuese muy grande"
       ]
@@ -142,7 +140,7 @@
         {
           "kind": "image",
           "options": [
-            "50"
+            "80"
           ],
           "params": [
             "img/topologia.png"
@@ -169,9 +167,9 @@
             "Son utiles para mostrar distintas demostraciones del mismo elemento. Por ejemplo, en Topologia se puede abordar desde 2 perspectirvas, por un lado usar metricas y por otro lado, el concepto de bolas. Creo que puede ser util no tratarlos de forma indistinta puesto que, aun que las",
             {
               "kind": "note",
-              "params": [
-                "bolas"
-              ],
+              "params": {
+                "title": "bolas"
+              },
               "content": [
                 "Una bola es un subconjunto de",
                 {
@@ -220,7 +218,9 @@
     {
       "kind": "math",
       "mode": "display",
-      "raw": "E = mc^2"
+      "raw": "E = mc^2",
+      "id": "eq:einstein",
+      "index": 1
     },
     {
       "kind": "paragraph"
@@ -238,7 +238,10 @@
     {
       "kind": "paragraph"
     },
-    "Como se agregan al output como hermano del arbol, este ya no regresa un array sino un diccionario."
+    "Como se agregan al output como hermano del arbol, este ya no regresa un array sino un diccionario.",
+    {
+      "kind": "paragraph"
+    }
   ],
   "refs": {
     "eq:einstein": {
