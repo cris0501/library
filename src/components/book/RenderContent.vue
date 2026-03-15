@@ -57,7 +57,7 @@
     </template>
 
     <template v-else-if="item.kind === 'note'">
-      <Note :title="item.params?.join(', ')" :content="item.content" />
+      <Note :title="item.params?.title" :content="item.content" />
     </template>
 
     <template v-else-if="item.kind === 'ref'">
@@ -108,6 +108,7 @@
     }
   }
 </script>
+
 
 
 

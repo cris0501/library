@@ -21,7 +21,7 @@
       <!-- Flecha solo desktop -->
       <div
         v-if="!isMobile"
-        class="fixed z-50 w-0 h-0
+        class="absolute z-50 w-0 h-0
                border-l-[10px] border-l-transparent
                border-r-[10px] border-r-transparent
                border-t-[10px] border-t-yellow-400"
@@ -31,7 +31,7 @@
       <!-- Nota -->
       <div
         ref="noteElement"
-        class="fixed z-50 rounded-xl bg-yellow-400 p-3 shadow-lg font-nunito text-sm text-gray-800"
+        class="absolute z-50 rounded-xl bg-yellow-400 p-3 shadow-lg font-nunito text-sm text-gray-800"
         :style="noteStyle"
       >
         <RenderContent v-for="(item, i) in content" :key="'note-'+i" :item="item" />
@@ -80,18 +80,15 @@ const calculatePosition = async () => {
   const noteRect = noteElement.value.getBoundingClientRect()
   const margin = 8
 
-  // Centrar horizontalmente sobre el anchor
-  let left = anchorRect.left + (anchorRect.width / 2) - (noteRect.width / 2)
-
-  // Clamp para no salir del viewport
+  let left = anchorRect.left + window.scrollX + (anchorRect.width / 2) - (noteRect.width / 2)
   left = Math.max(margin, Math.min(left, window.innerWidth - noteRect.width - margin))
 
-  const top = anchorRect.top - noteRect.height - 12
+  const top = anchorRect.top + window.scrollY - noteRect.height - 12
 
   notePos.value = {
     top,
     left,
-    arrowLeft: anchorRect.left + (anchorRect.width / 2)
+    arrowLeft: anchorRect.left + window.scrollX + (anchorRect.width / 2)
   }
 }
 
@@ -124,3 +121,4 @@ watch(show, async (isShowing) => {
   }
 })
 </script>
+
