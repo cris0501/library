@@ -27,6 +27,17 @@
       "kind": "paragraph"
     },
     {
+      "kind": "heading",
+      "level": 0,
+      "content": [
+        "Listas"
+      ],
+      "chapter_index": 1
+    },
+    {
+      "kind": "paragraph"
+    },
+    {
       "kind": "list",
       "ordered": true,
       "content": [
@@ -110,6 +121,17 @@
     {
       "kind": "paragraph"
     },
+    {
+      "kind": "heading",
+      "level": 0,
+      "content": [
+        "Comentarios"
+      ],
+      "chapter_index": 2
+    },
+    {
+      "kind": "paragraph"
+    },
     "Dentro de cada elemento se debe restringir el contenido que se puede escribir, ie, que pasa si dentro de una",
     {
       "kind": "note",
@@ -135,6 +157,17 @@
       "kind": "paragraph"
     },
     {
+      "kind": "heading",
+      "level": 0,
+      "content": [
+        "Imagenes"
+      ],
+      "chapter_index": 3
+    },
+    {
+      "kind": "paragraph"
+    },
+    {
       "kind": "figure",
       "content": [
         {
@@ -153,6 +186,17 @@
           ]
         }
       ]
+    },
+    {
+      "kind": "paragraph"
+    },
+    {
+      "kind": "heading",
+      "level": 0,
+      "content": [
+        "Bloques"
+      ],
+      "chapter_index": 4
     },
     {
       "kind": "paragraph"
@@ -216,6 +260,17 @@
       "kind": "paragraph"
     },
     {
+      "kind": "heading",
+      "level": 0,
+      "content": [
+        "Referencias"
+      ],
+      "chapter_index": 5
+    },
+    {
+      "kind": "paragraph"
+    },
+    {
       "kind": "math",
       "mode": "display",
       "raw": "E = mc^2",
@@ -241,11 +296,189 @@
     "Como se agregan al output como hermano del arbol, este ya no regresa un array sino un diccionario.",
     {
       "kind": "paragraph"
-    }
+    },
+    "Por fin se agregaron los custom components de la libreria original. Sin embargo, crear una retrocompatibilidad implico un cambio grande en dichas librerias.",
+    {
+      "kind": "paragraph"
+    },
+    {
+      "kind": "heading",
+      "level": 0,
+      "content": [
+        "Customs components"
+      ],
+      "chapter_index": 6
+    },
+    {
+      "kind": "paragraph"
+    },
+    "En este punto, el core ya parsea la base de latex, se pueden integrar equaciones, listas, imagenes, referencias y algun elemento mas. Si bien, con esto ya se pueden crear documentos, tambien es cierto que la intencion de este \"parser\" es expandir LaTeX de una forma sencilla. Sin tener que aprender otra sintaxis y semantica, unicamente se agregan algunos comandos o componentes extras. Estos siguen la sintaxis de latex y como ya podemos leer y procesar la sintaxis de latex, la adaptacion del escritor a nuevos componentes es relativamente sencilla.",
+    {
+      "kind": "paragraph"
+    },
+    {
+      "kind": "axiom",
+      "content": [
+        "Los custom components dejaron de ser commands inline para ser ahora environments. Usando key value props."
+      ]
+    },
+    {
+      "kind": "paragraph"
+    },
+    {
+      "kind": "axiom",
+      "params": {
+        "title": "Arquimedes",
+        "label": "ax-arq"
+      },
+      "content": [
+        "Para todo",
+        {
+          "kind": "math",
+          "mode": "inline",
+          "raw": "x \\in \\N"
+        },
+        "existe",
+        {
+          "kind": "math",
+          "mode": "inline",
+          "raw": "y \\in \\N"
+        },
+        "tal que",
+        {
+          "kind": "math",
+          "mode": "inline",
+          "raw": "y > x"
+        },
+        "."
+      ],
+      "id": "ax-arq",
+      "index": 2
+    },
+    {
+      "kind": "paragraph"
+    },
+    {
+      "kind": "theorem",
+      "params": {
+        "title": "Bolzano-Weierstrass"
+      },
+      "content": [
+        "Toda sucesion acotada en",
+        {
+          "kind": "math",
+          "mode": "inline",
+          "raw": "\\R^n"
+        },
+        "tiene una subsucesion convergente."
+      ]
+    },
+    {
+      "kind": "paragraph"
+    },
+    {
+      "kind": "definition",
+      "params": {
+        "title": "Espacio metrico",
+        "label": "def-met"
+      },
+      "content": [
+        "Un espacio metrico es un par",
+        {
+          "kind": "math",
+          "mode": "inline",
+          "raw": "(X, d)"
+        },
+        "donde ..."
+      ],
+      "id": "def-met",
+      "index": 3
+    },
+    {
+      "kind": "paragraph"
+    },
+    {
+      "kind": "proof",
+      "content": [
+        "Sea",
+        {
+          "kind": "math",
+          "mode": "inline",
+          "raw": "\\epsilon > 0"
+        },
+        "...",
+        {
+          "kind": "qed"
+        }
+      ]
+    },
+    {
+      "kind": "paragraph"
+    },
+    {
+      "kind": "exercise",
+      "params": {
+        "label": "ej-1"
+      },
+      "content": [
+        "Demuestre que ..."
+      ],
+      "id": "ej-1",
+      "index": 4
+    },
+    {
+      "kind": "paragraph"
+    },
+    {
+      "kind": "heading",
+      "level": 1,
+      "content": [
+        "Capitulos"
+      ]
+    },
+    {
+      "kind": "paragraph"
+    },
+    "En este punto, se integran las secciones y capitulos. Algo esencial al momento de escribir documentos largos (libros, notas). Esto permite separar el contenido en agrupaciones con informacion relacionada. A su vez, nos permite crear una lista de capitulos para crear referencias y permitir al usuario viajar rapido entre contenido."
   ],
   "refs": {
     "eq:einstein": {
       "index": 1
+    },
+    "ax-arq": {
+      "index": 2
+    },
+    "def-met": {
+      "index": 3
+    },
+    "ej-1": {
+      "index": 4
+    }
+  },
+  "chapters": {
+    "chapter:1": {
+      "index": 1,
+      "title": "Listas"
+    },
+    "chapter:2": {
+      "index": 2,
+      "title": "Comentarios"
+    },
+    "chapter:3": {
+      "index": 3,
+      "title": "Imagenes"
+    },
+    "chapter:4": {
+      "index": 4,
+      "title": "Bloques"
+    },
+    "chapter:5": {
+      "index": 5,
+      "title": "Referencias"
+    },
+    "chapter:6": {
+      "index": 6,
+      "title": "Customs components"
     }
   }
 }
