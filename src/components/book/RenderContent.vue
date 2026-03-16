@@ -5,8 +5,35 @@
 
   <template v-else-if="item && item.kind">
     <span v-if="item.id" :id="item.id"></span>
+    
+    <template v-if="item.kind === 'heading'">
+      <span v-if="item.chapter_index" :id="'chapter:'+item.chapter_index"></span> <!-- Reference id -->
+      <div :class="{
+        'w-full': true,
+        'border-b': true,
+        'p-3': true,
+        'my-12': item.level === 0,
+        'my-8': item.level != 0,
+      }">
+        <span 
+          :class="{
+            'text-4xl': item.level === 0,
+            'text-2xl': item.level === 1,
+            'text-xl': item.level > 1,
+            'font-bold': true
+          }"
+        >
+          <template v-if="item.level == 0">
+            {{ item.chapter_index + '. ' + item.content[0] }}
+          </template>
+          <template v-else>
+            {{ item.content[0] }}
+          </template>
+        </span>
+      </div>
+    </template>
 
-    <template v-if="item.kind === 'paragraph'">
+    <template v-else-if="item.kind === 'paragraph'">
       <div class="display-block my-4"></div>
     </template>
 
