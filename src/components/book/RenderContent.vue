@@ -4,60 +4,62 @@
   </template>
 
   <template v-else-if="item && item.kind">
+    <span v-if="item.id" :id="item.id"></span>
+
     <template v-if="item.kind === 'paragraph'">
       <div class="display-block my-4"></div>
     </template>
-    
+
     <template v-else-if="item.kind === 'backslash'">
       <span class="display-inline ml-2">\</span>
     </template>
-  
-    <template v-if="item.kind === 'newline'">
+
+    <template v-else-if="item.kind === 'newline'">
       <br /><br />
     </template>
-    
+
     <template v-else-if="item.kind === 'figure'">
       <Figure :item="item" />
     </template>
 
     <strong v-else-if="item.kind === 'bold'" class="font-bold font-nunito">
-      <RenderContent 
-        v-for="(subItem, index) in item.content" 
-        :key="index" 
-        :item="subItem" 
+      <RenderContent
+        v-for="(subItem, index) in item.content"
+        :key="index"
+        :item="subItem"
       />
     </strong>
 
     <em v-else-if="item.kind === 'italic'" class="italic font-nunito">
-      <RenderContent 
-        v-for="(subItem, index) in item.content" 
-        :key="index" 
-        :item="subItem" 
+      <RenderContent
+        v-for="(subItem, index) in item.content"
+        :key="index"
+        :item="subItem"
       />
     </em>
 
     <template v-else-if="item.kind === 'math'">
-      <Equation
-        :raw="item.raw"
-        :displayMode="item.mode === 'display'"
-        :id="item.id"
-      />
+      <Equation :raw="item.raw" :displayMode="item.mode === 'display'" />
     </template>
 
     <template v-else-if="item.kind === 'list'">
-      <List :content="item.content" :ordered="item.ordered" :id="item.id"/>
+      <List :content="item.content" :ordered="item.ordered" />
     </template>
-    
-    <template v-else-if="item.kind === 'label'">
-      <div :id="item.id" class="inline"></div>
-    </template>
-    
+
     <template v-else-if="item.kind === 'block'">
       <Block :items="item.content" />
     </template>
 
     <template v-else-if="item.kind === 'note'">
       <Note :title="item.params?.title" :content="item.content" />
+    </template>
+
+    <template v-else-if="SEMANTIC_KINDS.has(item.kind)">
+      <Proposition
+        :kind="item.kind"
+        :title="item.params?.title"
+        :content="item.content"
+      />
     </template>
 
     <template v-else-if="item.kind === 'ref'">
@@ -80,21 +82,27 @@
   import Note from './Note.vue'
   import Block from './Block.vue'
   import Figure from './Figure.vue'
+  import Proposition from './Proposition.vue'
 
   defineProps({
     item: { required: true }
   })
 
+  const SEMANTIC_KINDS = new Set([
+    'definition', 'axiom', 'theorem', 'lemma',
+    'proposition', 'corollary', 'exercise',
+    'convention', 'proof',
+  ])
+
   const _refs = inject('refs')
   const refsData = _refs?.value || _refs
   const savePosition = inject('savePosition')
   const navigationStack = inject('navigationStack')
-  
+
   const findRef = (_id) => {
     if (_id && refsData && _id in refsData) {
       return `(${refsData[_id].index})`
     }
-    
     return '[?]'
   }
 
@@ -108,8 +116,3 @@
     }
   }
 </script>
-
-
-
-
-

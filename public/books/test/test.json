@@ -241,11 +241,134 @@
     "Como se agregan al output como hermano del arbol, este ya no regresa un array sino un diccionario.",
     {
       "kind": "paragraph"
+    },
+    "Por fin se agregaron los custom components de la libreria original. Sin embargo, crear una retrocompatibilidad implico un cambio grande en dichas librerias.",
+    {
+      "kind": "paragraph"
+    },
+    {
+      "kind": "axiom",
+      "content": [
+        "Los custom components dejaron de ser commands inline para ser ahora environments. Usando key value props."
+      ]
+    },
+    {
+      "kind": "paragraph"
+    },
+    {
+      "kind": "axiom",
+      "params": {
+        "title": "Arquimedes",
+        "label": "ax-arq"
+      },
+      "content": [
+        "Para todo",
+        {
+          "kind": "math",
+          "mode": "inline",
+          "raw": "x \\in \\N"
+        },
+        "existe",
+        {
+          "kind": "math",
+          "mode": "inline",
+          "raw": "y \\in \\N"
+        },
+        "tal que",
+        {
+          "kind": "math",
+          "mode": "inline",
+          "raw": "y > x"
+        },
+        "."
+      ],
+      "id": "ax-arq",
+      "index": 2
+    },
+    {
+      "kind": "paragraph"
+    },
+    {
+      "kind": "theorem",
+      "params": {
+        "title": "Bolzano-Weierstrass"
+      },
+      "content": [
+        "Toda sucesion acotada en",
+        {
+          "kind": "math",
+          "mode": "inline",
+          "raw": "\\R^n"
+        },
+        "tiene una subsucesion convergente."
+      ]
+    },
+    {
+      "kind": "paragraph"
+    },
+    {
+      "kind": "definition",
+      "params": {
+        "title": "Espacio metrico",
+        "label": "def-met"
+      },
+      "content": [
+        "Un espacio metrico es un par",
+        {
+          "kind": "math",
+          "mode": "inline",
+          "raw": "(X, d)"
+        },
+        "donde ..."
+      ],
+      "id": "def-met",
+      "index": 3
+    },
+    {
+      "kind": "paragraph"
+    },
+    {
+      "kind": "proof",
+      "content": [
+        "Sea",
+        {
+          "kind": "math",
+          "mode": "inline",
+          "raw": "\\epsilon > 0"
+        },
+        "...",
+        {
+          "kind": "qed"
+        }
+      ]
+    },
+    {
+      "kind": "paragraph"
+    },
+    {
+      "kind": "exercise",
+      "params": {
+        "label": "ej-1"
+      },
+      "content": [
+        "Demuestre que ..."
+      ],
+      "id": "ej-1",
+      "index": 4
     }
   ],
   "refs": {
     "eq:einstein": {
       "index": 1
+    },
+    "ax-arq": {
+      "index": 2
+    },
+    "def-met": {
+      "index": 3
+    },
+    "ej-1": {
+      "index": 4
     }
   }
 }
