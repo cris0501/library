@@ -5,7 +5,7 @@
 
   <template v-else-if="item && item.kind">
     <span v-if="item.id" :id="item.id"></span>
-    
+
     <template v-if="item.kind === 'heading'">
       <span v-if="item.chapter_index" :id="'chapter:'+item.chapter_index"></span> <!-- Reference id -->
       <div :class="{
@@ -13,7 +13,7 @@
         'border-b': true,
         'p-3': true,
         'my-12': item.level === 0,
-        'my-8': item.level != 0,
+        'my-8': item.level === 0,
       }">
         <span 
           :class="{
@@ -49,22 +49,6 @@
       <Figure :item="item" />
     </template>
 
-    <strong v-else-if="item.kind === 'bold'" class="font-bold font-nunito">
-      <RenderContent
-        v-for="(subItem, index) in item.content"
-        :key="index"
-        :item="subItem"
-      />
-    </strong>
-
-    <em v-else-if="item.kind === 'italic'" class="italic font-nunito">
-      <RenderContent
-        v-for="(subItem, index) in item.content"
-        :key="index"
-        :item="subItem"
-      />
-    </em>
-
     <template v-else-if="item.kind === 'math'">
       <Equation :raw="item.raw" :displayMode="item.mode === 'display'" />
     </template>
@@ -81,7 +65,7 @@
       <Note :title="item.params?.title" :content="item.content" />
     </template>
 
-    <template v-else-if="SEMANTIC_KINDS.has(item.kind)">
+    <template v-else-if=" propositionTypes.has(item.kind)">
       <Proposition
         :kind="item.kind"
         :title="item.params?.title"
@@ -99,6 +83,27 @@
       </a>
     </template>
 
+    <a
+      v-else-if="item.kind === 'url'"
+      :href="item.content[0]"
+      class="text-amber-600 hover:text-amber-700 underline"
+      target="_blank"
+      rel="noopener"
+    >
+      {{ item.content[0] }}
+    </a>
+
+    <span
+      v-else-if="textStyles[item.kind]"
+      :class="textStyles[item.kind]"
+    >
+      <RenderContent
+        v-for="(subItem, index) in item.content"
+        :key="index"
+        :item="subItem"
+      />
+    </span>
+
   </template>
 </template>
 
@@ -115,11 +120,20 @@
     item: { required: true }
   })
 
-  const SEMANTIC_KINDS = new Set([
+  const  propositionTypes = new Set([
     'definition', 'axiom', 'theorem', 'lemma',
     'proposition', 'corollary', 'exercise',
     'convention', 'proof',
   ])
+  
+  const textStyles = {
+    bold:       'font-bold font-nunito',
+    italic:     'italic font-nunito',
+    underline:  'underline',
+    monospace:  'font-mono text-sm bg-gray-100 px-1 rounded',
+    smallcaps:  'smallcaps',
+    sansserif:  'font-sans',
+  }
 
   const _refs = inject('refs')
   const refsData = _refs?.value || _refs
