@@ -5,8 +5,12 @@
 
   <template v-else-if="item && item.kind">
     <span v-if="item.id" :id="item.id"></span>
+    
+    <template v-if="item.kind === 'alert'">
+      <Alert :title="item.content[0]" />
+    </template>
 
-    <template v-if="item.kind === 'heading'">
+    <template v-else-if="item.kind === 'heading'">
       <span v-if="item.chapter_index" :id="'chapter:'+item.chapter_index"></span> <!-- Reference id -->
       <div :class="{
         'w-full': true,
@@ -42,7 +46,7 @@
     </template>
 
     <template v-else-if="item.kind === 'newline'">
-      <br /><br />
+      <br />
     </template>
 
     <template v-else-if="item.kind === 'figure'">
@@ -85,12 +89,12 @@
 
     <a
       v-else-if="item.kind === 'url'"
-      :href="item.content[0]"
+      :href="item.params[0]"
       class="text-amber-600 hover:text-amber-700 underline"
       target="_blank"
       rel="noopener"
     >
-      {{ item.content[0] }}
+      {{ item.params[0] }}
     </a>
 
     <span
@@ -109,6 +113,7 @@
 
 <script setup>
   import { inject } from 'vue'
+  import Alert from './Alert.vue'
   import Equation from './Equation.vue'
   import List from './List.vue'
   import Note from './Note.vue'
@@ -157,3 +162,4 @@
     }
   }
 </script>
+

@@ -122,7 +122,7 @@
       .then(r => r.json())
       .then(r => {
         setTimeout(() => {
-          data.value = r.content ? r.content : {}
+          data.value = r.content ? r.content : []
           _refs.value = r.refs ? r.refs : []
         }, 2000)
       })
@@ -144,4 +144,5 @@
   letter-spacing: 0.01em;
 }
 </style>
+
 

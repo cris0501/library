@@ -8,7 +8,8 @@
 </template>
 
 <script setup>
-defineProps({
-  title: { type: String, required: true }
-})
+  defineProps({
+    title: { type: String, required: true }
+  })
 </script>
+

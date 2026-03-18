@@ -13,7 +13,7 @@
         v-if="subItem.kind === 'image'"
         :src="bookUrl+subItem.params[0]"
         class="w-full h-auto rounded-lg shadow-md"
-        :alt="captionText"
+        :alt="captionData?.content?.[0] || ''"
       />
 
       <figcaption
@@ -62,4 +62,5 @@
     props.item.content.find(i => i.kind === 'caption')
   )
 </script>
+
 
