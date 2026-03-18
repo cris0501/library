@@ -35,7 +35,7 @@
     </aside>
 
     <!-- Main content -->
-    <main class="flex-1 max-w-3xl mx-auto px-6 py-16 lg:py-12">
+    <main class="w-full md:w-2/3 mx-auto px-6 py-16 lg:py-12">
 
       <!-- Header -->
       <section id="overview" class="mb-14">
@@ -919,3 +919,4 @@ onUnmounted(() => observer?.disconnect())
   @apply font-semibold text-blue-700 mb-2;
 }
 </style>
+

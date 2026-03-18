@@ -1,7 +1,7 @@
 <template>
   <header v-if="showHeader">
-    <div class="w-full bg-primary p-1 z-10">
-      <nav class="flex px-5 lg:px-24">
+    <div class="w-full bg-primary p-1 z-100">
+      <nav class="flex py-2 px-5 lg:px-24">
         <div class="flex flex-1 items-center">
           <RouterLink :to="{name: 'home'}">
             <span class="flex items-center text-xl font-plex font-bold">
@@ -41,6 +41,7 @@
     return route.name !== 'book'
   })
 </script>
+
 
 
 

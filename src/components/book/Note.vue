@@ -14,7 +14,7 @@
       <!-- Overlay: en móvil oscuro, en desktop transparente pero cierra -->
       <div
         class="fixed inset-0 z-40"
-        :class="isMobile ? 'bg-black/20' : ''"
+        :class="isMobile ? 'bg-black/50' : ''"
         @click="toggleNote"
       />
 
@@ -95,10 +95,11 @@ const calculatePosition = async () => {
 const noteStyle = computed(() => {
   if (isMobile.value) {
     return {
+      position: 'fixed',
       left: '5vw',
       width: '90vw',
       top: '50%',
-      transform: 'translateY(-50%)'
+      transform: 'translateY(-50%)',
     }
   }
   return {
@@ -121,4 +122,5 @@ watch(show, async (isShowing) => {
   }
 })
 </script>
+
 
