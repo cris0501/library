@@ -107,6 +107,10 @@
         :item="subItem"
       />
     </span>
+    
+    <template v-else-if="item.kind === 'verbatim'" >
+      <pre class="font-mono text-sm bg-gray-100 p-4 rounded-lg my-4 whitespace-pre" > {{ item.raw }}</pre>
+    </template>
 
   </template>
 </template>

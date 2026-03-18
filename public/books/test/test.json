@@ -448,25 +448,19 @@
     {
       "kind": "paragraph"
     },
-    " book ",
     {
-      "kind": "newline"
+      "kind": "verbatim",
+      "raw": "book\n |-- main.tex\n |-- assets\n       |-- pictures\n              |-- 1.png\n              |-- 2.jpg"
     },
-    " |-- main.tex ",
     {
-      "kind": "newline"
+      "kind": "paragraph"
     },
-    " |-- assets ",
+    " y para leerla se debe usar su ruta relativa, es decir ",
     {
-      "kind": "newline"
-    },
-    " |-- pictures ",
-    {
-      "kind": "newline"
-    },
-    " |-- domain ",
-    {
-      "kind": "newline"
+      "kind": "monospace",
+      "content": [
+        "assets/pictures/1.png "
+      ]
     },
     {
       "kind": "paragraph"
@@ -494,17 +488,17 @@
     {
       "kind": "paragraph"
     },
-    " ",
+    " Agrupar elementos en un ",
     {
       "kind": "note",
       "params": {
-        "title": "block"
+        "title": "bloque"
       },
       "content": [
         "Entorno para mostrar distintas versiones de un contenido con botones"
       ]
     },
-    " La primera idea fue un comando ",
+    " nos permite indicar directamente contenidos que estan relaionados pero que de alguna forma, tienen una relacion aun mas estrecha que el resto del contexto. La primera idea fue un comando ",
     {
       "kind": "backslash"
     },
@@ -569,7 +563,10 @@
     {
       "kind": "paragraph"
     },
-    " ",
+    " Cada ",
+    {
+      "kind": "backslash"
+    },
     {
       "kind": "note",
       "params": {
@@ -579,11 +576,7 @@
         "Genera una entrada en un diccionario con un contador automatico"
       ]
     },
-    " Cada ",
-    {
-      "kind": "backslash"
-    },
-    " label genera una entrada en ",
+    " genera una entrada en ",
     {
       "kind": "monospace",
       "content": [
@@ -839,7 +832,10 @@
         "fichero"
       ]
     },
-    ": antes no tenia sentido, solo probaba features. Ahora que el parser lee bien la estructura de un texto, el contenido puede tener coherencia. "
+    ": antes no tenia sentido, solo probaba features. Ahora que el parser lee bien la estructura de un texto, el contenido puede tener coherencia.",
+    {
+      "kind": "paragraph"
+    }
   ],
   "refs": {
     "eq:einstein": {

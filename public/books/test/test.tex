@@ -133,17 +133,25 @@
   sino en establecer buenas practicas desde la lectura del fichero tex.
   La estructura recomendada del folder es:
 
-  book \\
-   |-- main.tex \\
-   |-- assets \\
-         |-- pictures \\
-         |-- domain \\
+\begin{verbatim}
+book
+ |-- main.tex
+ |-- assets
+       |-- pictures
+              |-- 1.png
+              |-- 2.jpg
+\end{verbatim}
+
+  y para leerla se debe usar su ruta relativa, es decir \texttt{ assets/pictures/1.png }
 
   \chapter{ Custom components }
 
   \section{ Bloques }
 
-  \note[block]{Entorno para mostrar distintas versiones de un contenido con botones}
+  Agrupar elementos en un
+  \note[bloque]{Entorno para mostrar distintas versiones de un contenido con botones}
+  nos permite indicar directamente contenidos que estan relaionados pero que de alguna
+  forma, tienen una relacion aun mas estrecha que el resto del contexto.
   La primera idea fue un comando \backslash block\{c1\}\{c2\}\{...\}, pero la
   cantidad de subbloques es variable y eso complica el registro y la deteccion del cierre.
   Usar items resulto ser la solucion mas practica.
@@ -162,8 +170,8 @@
 
   \section{ Referencias }
 
-  \note[label]{Genera una entrada en un diccionario con un contador automatico}
-  Cada \backslash label genera una entrada en \texttt{label:\{id, index\}}.
+  Cada \backslash\note[label]{Genera una entrada en un diccionario con un contador automatico}
+  genera una entrada en \texttt{label:\{id, index\}}.
   Esto tambien cambio el output: ya no es un array sino un diccionario, pues
   las referencias viven como hermanos del arbol.
 
@@ -228,3 +236,4 @@
   Hoy cambie el contenido de este \textit{fichero}: antes no tenia sentido,
   solo probaba features. Ahora que el parser lee bien la estructura de un texto,
   el contenido puede tener coherencia.
+
