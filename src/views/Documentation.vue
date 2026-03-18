@@ -41,7 +41,7 @@
       <section id="overview" class="mb-14">
         <p class="text-4xl font-bold font-plex mb-4">EduWords Documentation</p>
         <p class="text-lg text-gray-600">
-          EduWords is an innovative language for students to create, share, and collaborate on educational content with full LaTeX support.
+          Documentation for the LaTeX parser and interactive book platform.
         </p>
 
         <!-- 3 feature cards -->
@@ -54,10 +54,7 @@
               <i class="icon icon-book"></i>
               <p class="font-bold font-plex ml-3 text-base">Getting Started</p>
             </span>
-            <p class="font-nunito text-sm opacity-90 mb-3">Install the esfm packages and write your first document.</p>
-            <span class="inline-flex items-center self-start bg-white/20 text-white text-xs font-semibold px-2.5 py-1 rounded-full">
-              🚧 Under construction
-            </span>
+            <p class="font-nunito text-sm opacity-90 mb-3">Installation, file structure, and how to use the parser.</p>
           </button>
           <button
             @click="scrollTo('key-value-params')"
@@ -77,7 +74,7 @@
               <i class="icon icon-code"></i>
               <p class="font-bold font-plex ml-3 text-base">Parser Limitations</p>
             </span>
-            <p class="font-nunito text-sm opacity-90">What the parser currently does not understand or support.</p>
+            <p class="font-nunito text-sm opacity-90">What the parser currently does not support.</p>
           </button>
         </div>
 
@@ -115,18 +112,47 @@
       <!-- Getting Started -->
       <section id="getting-started" class="mb-14">
         <h2 class="text-2xl font-bold font-plex mb-2">Getting Started</h2>
-        <p class="text-sm text-gray-400 mb-6">Installation and workflow overview</p>
+        <p class="text-sm text-gray-400 mb-6">Installation, file structure, and usage</p>
 
-        <div class="doc-block mb-8">
-          <p class="doc-block-title">Under construction</p>
-          <p class="text-gray-700 text-sm leading-relaxed">
-            The esfm LaTeX packages are not yet publicly released in their final form. Once released, this section will walk through installation, package setup, and writing your first document. For now, the workflow overview below applies.
-          </p>
+        <h3 class="text-lg font-semibold font-plex mb-3">File Structure</h3>
+        <p class="text-gray-700 mb-4 leading-relaxed">
+          The recommended folder structure for a book project is:
+        </p>
+        <pre class="code-block mb-6">book/              # Project root folder
+  main.tex         # Main entry file
+  chapters/        # Optional: split content
+    intro.tex
+    chapter1.tex
+  assets/          # Images and resources
+    pictures/
+      diagram.png</pre>
+
+        <h3 class="text-lg font-semibold font-plex mb-3">How to Use the Parser (CLI)</h3>
+        <p class="text-gray-700 mb-4 leading-relaxed">
+          Run the parser from the compiler directory using Python's module system:
+        </p>
+        <div class="code-block mb-4">
+          <span class="text-green-400">python</span><span class="text-gray-300"> -m larex </span><span class="text-yellow-300">path/to/document.tex</span>
+        </div>
+        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+          This outputs the JSON AST to stdout. The <code class="code-inline">-f</code> flag saves the result to <code class="code-inline">examples/dist/</code> and also writes the resolved <code class="code-inline">.tex</code> (includes injected, comments stripped):
+        </p>
+        <div class="code-block mb-6">
+          <span class="text-green-400">python</span><span class="text-gray-300"> -m larex </span><span class="text-yellow-300">document.tex</span><span class="text-gray-300"> -f</span>
         </div>
 
-        <h3 class="text-lg font-semibold font-plex mb-3">The origin is always a <code class="code-inline-heading">.tex</code> file</h3>
+        <h3 class="text-lg font-semibold font-plex mb-3">Path Resolution</h3>
+        <p class="text-gray-700 mb-4 leading-relaxed">
+          All paths (images, included files) are resolved relative to the main <code class="code-inline">.tex</code> file:
+        </p>
+        <ul class="list-disc list-inside text-gray-600 text-sm mb-4 space-y-1">
+          <li>Images: use <code class="code-inline">\includegraphics{pictures/diagram.png}</code></li>
+          <li>Includes: use <code class="code-inline">\include{chapters/intro}</code> (omit .tex extension)</li>
+        </ul>
+
+        <h3 class="text-lg font-semibold font-plex mb-3">The Two Paths</h3>
         <p class="text-gray-700 mb-6 leading-relaxed">
-          Everything starts with a standard LaTeX document. You write your content in a <code class="code-inline">.tex</code> file using the supported commands and environments. From there, you have two independent paths — you can use one or both.
+          Everything starts with a <code class="code-inline">.tex</code> file. From there, you have two independent paths:
         </p>
 
         <div class="flex flex-col gap-5 mb-10">
@@ -137,7 +163,7 @@
               <p class="font-semibold font-plex text-gray-800">PDF export via LaTeX</p>
             </div>
             <p class="text-gray-600 text-sm leading-relaxed">
-              Compile your <code class="code-inline">.tex</code> file as you normally would using any LaTeX engine (<code class="code-inline">pdflatex</code>, <code class="code-inline">xelatex</code>, <code class="code-inline">lualatex</code>). The esfm packages provide all custom environments as proper LaTeX definitions. This path is fully functional and does not involve <code class="code-inline">larex</code> at all — LaTeX is the render engine.
+              Compile your <code class="code-inline">.tex</code> file using any LaTeX engine (<code class="code-inline">pdflatex</code>, <code class="code-inline">xelatex</code>, <code class="code-inline">lualatex</code>). This path does not involve <code class="code-inline">larex</code> — LaTeX is the render engine.
             </p>
           </div>
 
@@ -150,15 +176,207 @@
             <p class="text-gray-600 text-sm leading-relaxed mb-4">
               Run the <code class="code-inline">larex</code> compiler on your <code class="code-inline">.tex</code> file to produce a JSON document tree. This JSON is consumed by the EduWords web reader to render an interactive virtual book in the browser — with math, cross-references, tooltip notes, and tab blocks.
             </p>
-            <div class="code-block">
-              <span class="text-green-400">python</span><span class="text-gray-300"> -m larex </span><span class="text-yellow-300">document.tex</span><span class="text-gray-400"> -o </span><span class="text-yellow-300">output.json</span>
-            </div>
           </div>
         </div>
 
         <p class="text-gray-600 text-sm leading-relaxed">
-          The two paths share the same <code class="code-inline">.tex</code> source. A document written for esfm + LaTeX can be compiled to PDF and to a virtual book from the same file, as long as it stays within the commands and environments supported by both.
+          Both paths share the same <code class="code-inline">.tex</code> source. A document can be compiled to PDF and to a virtual book from the same file, as long as it stays within the commands and environments supported by both.
         </p>
+      </section>
+
+      <hr class="border-gray-200 mb-14" />
+
+      <!-- Parser Output -->
+      <section id="parser-output" class="mb-14">
+        <h2 class="text-2xl font-bold font-plex mb-2">Parser Output</h2>
+        <p class="text-sm text-gray-400 mb-6">JSON AST structure and example</p>
+
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          The parser outputs a JSON object with a structured AST. The main keys are:
+        </p>
+
+        <div class="overflow-x-auto mb-8">
+          <table class="w-full text-sm text-left border-collapse">
+            <thead>
+              <tr class="border-b border-gray-200">
+                <th class="py-2 pr-6 font-semibold text-gray-700">Key</th>
+                <th class="py-2 font-semibold text-gray-700">Description</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-600">
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">content</code></td>
+                <td class="py-2">Array of AST nodes (text, headings, environments, etc.)</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">refs</code></td>
+                <td class="py-2">Dictionary of labels for cross-references</td>
+              </tr>
+              <tr>
+                <td class="py-2 pr-6"><code class="code-inline">chapters</code></td>
+                <td class="py-2">Dictionary of chapter metadata (title, index)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="text-lg font-semibold font-plex mb-3">Node Types (kind field)</h3>
+        <div class="overflow-x-auto mb-8">
+          <table class="w-full text-sm text-left border-collapse">
+            <thead>
+              <tr class="border-b border-gray-200">
+                <th class="py-2 pr-6 font-semibold text-gray-700">Kind</th>
+                <th class="py-2 font-semibold text-gray-700">Description</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-600">
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">paragraph</code></td>
+                <td class="py-2">Text paragraph (often implicit)</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">heading</code></td>
+                <td class="py-2">Chapter/Section. Has <code class="code-inline">level</code> (0=chapter, 1=section, 2=subsection)</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">bold</code></td>
+                <td class="py-2">Bold text, contains <code class="code-inline">content</code> array</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">italic</code></td>
+                <td class="py-2">Italic text, contains <code class="code-inline">content</code> array</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">math</code></td>
+                <td class="py-2">Math expression. Has <code class="code-inline">mode</code> (inline/display) and <code class="code-inline">raw</code> (LaTeX for KaTeX)</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">list</code></td>
+                <td class="py-2">Ordered/unordered list. Has <code class="code-inline">ordered</code> bool and <code class="code-inline">content</code> array of items</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">underline</code></td>
+                <td class="py-2">Underlined text, contains <code class="code-inline">content</code> array</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">monospace</code></td>
+                <td class="py-2">Monospace (typewriter) text, contains <code class="code-inline">content</code> array</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">smallcaps</code></td>
+                <td class="py-2">Small caps text, contains <code class="code-inline">content</code> array</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">sansserif</code></td>
+                <td class="py-2">Sans-serif text, contains <code class="code-inline">content</code> array</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">url</code></td>
+                <td class="py-2">Hyperlink. Has <code class="code-inline">content</code> with the raw URL string</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">newline</code></td>
+                <td class="py-2">Line break (from <code class="code-inline">\newline</code>, <code class="code-inline">\n</code>, or <code class="code-inline">\\</code>)</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">note</code></td>
+                <td class="py-2">Tooltip note. Has <code class="code-inline">params</code> (kv dict) and <code class="code-inline">content</code>. Inline-only.</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">alert</code></td>
+                <td class="py-2">Alert/warning block, contains <code class="code-inline">content</code> array</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">theorem</code></td>
+                <td class="py-2">Theorem block. Also: <code class="code-inline">definition</code>, <code class="code-inline">axiom</code>, <code class="code-inline">lemma</code>, <code class="code-inline">proposition</code>, <code class="code-inline">corollary</code>, <code class="code-inline">proof</code>, <code class="code-inline">exercise</code>, <code class="code-inline">convention</code>, <code class="code-inline">block</code></td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">figure</code></td>
+                <td class="py-2">Image container. Contains <code class="code-inline">image</code> and <code class="code-inline">caption</code> nodes</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">image</code></td>
+                <td class="py-2">Image node (from <code class="code-inline">\includegraphics</code>). Has <code class="code-inline">content</code> with path and optional <code class="code-inline">params</code> with <code class="code-inline">width</code></td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">caption</code></td>
+                <td class="py-2">Figure caption, contains <code class="code-inline">content</code> array</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">verbatim</code></td>
+                <td class="py-2">Pre-formatted text. Has <code class="code-inline">content</code> with raw text string</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">noindent</code></td>
+                <td class="py-2">Suppress indentation marker (no children)</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">pagebreak</code></td>
+                <td class="py-2">Page break marker (no children)</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">observation</code></td>
+                <td class="py-2">Observation marker (no children, from <code class="code-inline">\obs</code>)</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">proof-mark</code></td>
+                <td class="py-2">Proof/QED marker (no children, from <code class="code-inline">\dem</code>)</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">qed</code></td>
+                <td class="py-2">End-of-proof symbol (no children, from <code class="code-inline">\qed</code>)</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">backslash</code></td>
+                <td class="py-2">Literal backslash character (no children)</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6"><code class="code-inline">label</code></td>
+                <td class="py-2">Label definition. Has <code class="code-inline">id</code> and <code class="code-inline">index</code></td>
+              </tr>
+              <tr>
+                <td class="py-2 pr-6"><code class="code-inline">ref</code></td>
+                <td class="py-2">Cross-reference. Has <code class="code-inline">target</code> and <code class="code-inline">index</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="text-lg font-semibold font-plex mb-3">Example</h3>
+        <p class="text-gray-700 mb-4 leading-relaxed">
+          Input LaTeX:
+        </p>
+        <div class="code-block mb-4">
+          <span class="text-blue-300">\section</span><span class="text-gray-300">{Introduction}</span><br/>
+          <span class="text-gray-300">This is a </span><span class="text-blue-300">\textbf</span><span class="text-gray-300">{bold} statement.</span><br/>
+          <span class="text-gray-300">The formula $E = mc^2$ is famous.</span>
+        </div>
+
+        <p class="text-gray-700 mb-4 leading-relaxed">
+          Output JSON:
+        </p>
+        <pre class="code-block mb-4" style="max-height: 400px; overflow-y: auto;">{
+  "content": [
+    {
+      "kind": "heading",
+      "level": 1,
+      "content": ["Introduction"]
+    },
+    {
+      "kind": "bold",
+      "content": ["bold"]
+    },
+    " statement.",
+    {
+      "kind": "math",
+      "mode": "inline",
+      "raw": "E = mc^2"
+    },
+    " is famous."
+  ],
+  "refs": {},
+  "chapters": {}
+}</pre>
       </section>
 
       <hr class="border-gray-200 mb-14" />
@@ -286,6 +504,30 @@
                 <td class="py-2">Italic text</td>
               </tr>
               <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6 whitespace-nowrap"><code class="code-inline">\emph{text}</code></td>
+                <td class="py-2">Emphasized (italic) text</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6 whitespace-nowrap"><code class="code-inline">\underline{text}</code></td>
+                <td class="py-2">Underlined text</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6 whitespace-nowrap"><code class="code-inline">\texttt{text}</code></td>
+                <td class="py-2">Monospace (typewriter) text</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6 whitespace-nowrap"><code class="code-inline">\textsc{text}</code></td>
+                <td class="py-2">Small caps text</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6 whitespace-nowrap"><code class="code-inline">\textsf{text}</code></td>
+                <td class="py-2">Sans-serif text</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6 whitespace-nowrap"><code class="code-inline">\url{path}</code></td>
+                <td class="py-2">Hyperlink URL (raw, not parsed)</td>
+              </tr>
+              <tr class="border-b border-gray-100">
                 <td class="py-2 pr-6 whitespace-nowrap"><code class="code-inline">\includegraphics[width=N]{path}</code></td>
                 <td class="py-2"><code class="code-inline">width</code> is optional, as a percentage (e.g. <code class="code-inline">width=60</code>). Path is relative to the book's asset folder.</td>
               </tr>
@@ -309,9 +551,37 @@
                 <td class="py-2 pr-6 whitespace-nowrap"><code class="code-inline">\note[key=val]{text}</code></td>
                 <td class="py-2">Inline tooltip note. Accepts <code class="code-inline">title</code> and <code class="code-inline">aside</code> keys. Cannot contain display math or environments.</td>
               </tr>
-              <tr>
+              <tr class="border-b border-gray-100">
                 <td class="py-2 pr-6 whitespace-nowrap"><code class="code-inline">\ref{label}</code></td>
                 <td class="py-2">Cross-reference to a labeled esfm environment</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6 whitespace-nowrap"><code class="code-inline">\label{id}</code></td>
+                <td class="py-2">Define a label for cross-referencing</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6 whitespace-nowrap"><code class="code-inline">\alert{text}</code></td>
+                <td class="py-2">Alert/warning inline block</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6 whitespace-nowrap"><code class="code-inline">\noindent</code></td>
+                <td class="py-2">Suppress paragraph indentation (self-closing)</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6 whitespace-nowrap"><code class="code-inline">\newpage</code></td>
+                <td class="py-2">Page break (self-closing)</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6 whitespace-nowrap"><code class="code-inline">\obs</code></td>
+                <td class="py-2">Observation marker (self-closing)</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-6 whitespace-nowrap"><code class="code-inline">\dem</code></td>
+                <td class="py-2">Proof/demonstration marker (self-closing)</td>
+              </tr>
+              <tr>
+                <td class="py-2 pr-6 whitespace-nowrap"><code class="code-inline">\\</code></td>
+                <td class="py-2">Line break via double backslash (alternative to <code class="code-inline">\newline</code>)</td>
               </tr>
             </tbody>
           </table>
@@ -359,9 +629,13 @@
                 <td class="py-2 pr-6"><code class="code-inline">figure</code></td>
                 <td class="py-2">Image container. Accepts optional <code class="code-inline">[width=N]</code>. Place <code class="code-inline">\includegraphics</code> and <code class="code-inline">\caption</code> inside.</td>
               </tr>
-              <tr>
+              <tr class="border-b border-gray-100">
                 <td class="py-2 pr-6"><code class="code-inline">equation</code></td>
                 <td class="py-2">Display math block. Content is passed as raw LaTeX to KaTeX.</td>
+              </tr>
+              <tr>
+                <td class="py-2 pr-6"><code class="code-inline">verbatim</code></td>
+                <td class="py-2">Pre-formatted text block. Content is rendered as plain text without parsing.</td>
               </tr>
             </tbody>
           </table>
@@ -469,9 +743,19 @@
           <div><span class="text-yellow-300">  \sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}</span></div>
           <div><span class="text-blue-300">\end</span><span class="text-gray-300">{equation}</span></div>
         </div>
-        <p class="text-gray-600 text-sm">
-          Both forms produce display-mode math. The <code class="code-inline">equation</code> environment is equivalent to <code class="code-inline">$$...$$</code> in the current parser.
+        <p class="text-gray-600 text-sm mb-6">
+          All three forms produce display-mode math. The <code class="code-inline">equation</code> environment and <code class="code-inline">\[...\]</code> are equivalent to <code class="code-inline">$$...$$</code> in the current parser.
         </p>
+
+        <h3 class="text-lg font-semibold font-plex mb-3">Display Math — <code class="code-inline-heading">\[...\]</code> syntax</h3>
+        <p class="text-gray-700 mb-4 leading-relaxed">
+          Standard LaTeX display math delimiters are also supported:
+        </p>
+        <div class="code-block mb-4">
+          <div><span class="text-yellow-300">\[</span></div>
+          <div><span class="text-yellow-300">  \int_a^b f(x)\,dx = F(b) - F(a)</span></div>
+          <div><span class="text-yellow-300">\]</span></div>
+        </div>
       </section>
 
       <hr class="border-gray-200 mb-14" />
@@ -501,23 +785,16 @@
           </div>
 
           <div class="doc-block">
-            <p class="doc-block-title">No verbatim or code blocks</p>
+            <p class="doc-block-title">No clickable hyperlinks</p>
             <p class="text-gray-700 text-sm leading-relaxed">
-              <code class="code-inline">verbatim</code> and <code class="code-inline">lstlisting</code> are not recognized. There is no mechanism for displaying literal code or pre-formatted text.
-            </p>
-          </div>
-
-          <div class="doc-block">
-            <p class="doc-block-title">No hyperlinks</p>
-            <p class="text-gray-700 text-sm leading-relaxed">
-              <code class="code-inline">\href</code>, <code class="code-inline">\url</code>, and <code class="code-inline">\hyperref</code> are not supported. Links cannot be expressed in the document.
+              <code class="code-inline">\href</code> and <code class="code-inline">\hyperref</code> are not supported. <code class="code-inline">\url{path}</code> is supported and produces a <code class="code-inline">url</code> node, but rendering as a clickable link depends on the frontend.
             </p>
           </div>
 
           <div class="doc-block">
             <p class="doc-block-title">Limited text formatting</p>
             <p class="text-gray-700 text-sm leading-relaxed">
-              Only <code class="code-inline">\textbf</code> and <code class="code-inline">\textit</code> are recognized. <code class="code-inline">\emph</code>, <code class="code-inline">\underline</code>, <code class="code-inline">\texttt</code>, and other formatting commands are not supported.
+              Supported: <code class="code-inline">\textbf</code>, <code class="code-inline">\textit</code>, <code class="code-inline">\emph</code>, <code class="code-inline">\underline</code>, <code class="code-inline">\texttt</code>, <code class="code-inline">\textsc</code>, <code class="code-inline">\textsf</code>. Additional formatting commands are not supported.
             </p>
           </div>
 
@@ -557,9 +834,9 @@
           </div>
 
           <div class="doc-block">
-            <p class="doc-block-title">Single-file documents only</p>
+            <p class="doc-block-title">No \input support</p>
             <p class="text-gray-700 text-sm leading-relaxed">
-              <code class="code-inline">\input</code> and <code class="code-inline">\include</code> are not supported. Each book must be contained in a single <code class="code-inline">.tex</code> file.
+              <code class="code-inline">\input</code> is not supported. Use <code class="code-inline">\include{chapters/file}</code> instead — the parser resolves includes recursively before tokenizing (the <code class="code-inline">.tex</code> extension is optional).
             </p>
           </div>
 
@@ -584,6 +861,7 @@ const activeSection = ref('overview')
 const sections = [
   { id: 'overview', title: 'Overview' },
   { id: 'getting-started', title: 'Getting Started' },
+  { id: 'parser-output', title: 'Parser Output' },
   {
     id: 'key-value-params', title: 'Syntax Reference',
     children: [

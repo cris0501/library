@@ -9,46 +9,48 @@
 
   \chapter{ Inicio }
 
-  \section{ Primeras ideas }
+\section{ Primeras ideas }
 
-  Este proyecto nacio de querer entender como se crea un lenguaje, como se define
-  y se consume su sintaxis. De ahi surgen preguntas naturales como ¿por que
-  hay diferencia de velocidad entre lenguajes?
+Este proyecto nacio de querer entender como se crea un lenguaje, como se define
+y se consume su sintaxis. De ahi surgen preguntas naturales como ¿por que
+hay diferencia de velocidad entre lenguajes?
 
-  La respuesta directa es que depende de si es compilado o interpretado, pero
-  la pregunta real es otra: ¿por que optaron por ese diseño y como cambia el
-  funcionamiento del compilador?
+La respuesta directa es que depende de si es compilado o interpretado, pero
+la pregunta real es otra: ¿por que optaron por ese diseño y como cambia el
+funcionamiento del compilador?
 
-  La primera idea fue parsear con \note[expresiones regulares]{Patrones para identificar
-  y capturar texto} buscando estructuras tipo \backslash command\{.*\}\{.*(Contenido)\}.
-  Al inicio parece util, pero al anidar comandos el regex falla: el \} del comando
-  interior tambien cierra al superior. Se puede llevar un contador de \textbf{profundidad},
-  pero la expresion crece rapido y en entornos se pone peor pues ya se necesitan
-  funciones extra para extraer el contenido hasta el cierre.
+La primera idea fue parsear con \note[expresiones regulares]{Patrones para identificar
+y capturar texto} buscando estructuras tipo \backslash command\{.*\}\{.*(Contenido)\}.
+Al inicio parece util, pero al anidar comandos el regex falla: el \} del comando
+interior tambien cierra al superior. Se puede llevar un contador de \textbf{profundidad},
+pero la expresion crece rapido y en entornos se pone peor pues ya se necesitan
+funciones extra para extraer el contenido hasta el cierre.
 
-  \section{ Otras alternativas }
+\section{ Otras alternativas }
 
-  Probe con \note[Lark]{Herramienta para parseo y analisis gramatico} pero las 
-  anidaciones tampoco funcionaban de forma clara.
-  La siguiente idea fue trabajar caracter a caracter: acumular hasta encontrar
-  un caracter especial y reaccionar segun el contexto.
+Probe con \note[Lark]{Herramienta para parseo y analisis gramatico} pero las 
+anidaciones tampoco funcionaban de forma clara.
+La siguiente idea fue trabajar caracter a caracter: acumular hasta encontrar
+un caracter especial y reaccionar segun el contexto.
 
-  El problema es que el contexto complica todo. Un \{ en modo matematico es un
-  literal, no una accion. Eso genera demasiadas validaciones. Es como resolver
-  2+2 mediante union de conjuntos: mucho control para algo que podia ser simple.
+El problema es que el contexto complica todo. Un \{ en modo matematico es un
+literal, no una accion. Eso genera demasiadas validaciones. Es como resolver
+2+2 mediante union de conjuntos: mucho control para algo que podia ser simple.
 
-  \section{ Pausa }
+\section{ Pausa }
 
-  Con esos intentos sin resultado claro, detuve el proyecto. No habia una version
-  \note[estable]{Una que compilara al menos el documento mas basico} lista.
-  Algunos estudiantes me contactaron para apoyar, les agradeci pero sin un
-  parser estable la estructura podia cambiar en meses y
+Con esos intentos sin resultado claro, detuve el proyecto. No habia una version
+\note[estable]{Una que compilara al menos el documento mas basico} lista.
+Algunos estudiantes me contactaron para apoyar, les agradeci pero sin un
+parser estable la estructura podia cambiar en meses y
 
-  \alert{ pudiera pasar que este proyecto se abandonara. }
-  
-  Meses despues me someti a una cirugia, nada complicado pero que me brindo unos
-  dias de reposo y fue durante este tiempo que se me ocurrio continuar con este
-  proyecto, previamente abandonado.
+\alert{ pudiera pasar que este proyecto se abandonara. }
+
+Meses despues me someti a una cirugia, nada complicado pero que me brindo unos
+dias de reposo y fue durante este tiempo que se me ocurrio continuar con este
+proyecto, previamente abandonado.
+
+
 
   \chapter{ Tokens }
 
@@ -142,7 +144,8 @@ book
               |-- 2.jpg
 \end{verbatim}
 
-  y para leerla se debe usar su ruta relativa, es decir \texttt{ assets/pictures/1.png }
+  y para leerla se debe usar su ruta relativa, es decir \texttt{ assets/pictures/1.png },
+  siempre usando la ruta relativa al fichero de entrada, el main.tex.
 
   \chapter{ Custom components }
 
@@ -236,4 +239,27 @@ book
   Hoy cambie el contenido de este \textit{fichero}: antes no tenia sentido,
   solo probaba features. Ahora que el parser lee bien la estructura de un texto,
   el contenido puede tener coherencia.
+
+  \section{ Ficheros externos }
+  
+  Otra cosa a integrar es la lectura de ficheros externos con \texttt{ \backslash include },
+  el comando que trae el contenido de otro fichero, una forma
+  de injectar elementos. Principalmente se usa para separar el contenido en capitulos
+  o secciones. Para ello, el proyecto debera contar con la estrucura:
+  
+\begin{verbatim}
+book
+ |-- main.tex
+ |-- chapters
+       |-- one.tex
+       |-- two.tex
+\end{verbatim}
+
+  donde el main siempre es el referente de la ruta y se deberan usar rutas relativas,
+  similar al caso de las imagenes, se usara \texttt{ chapters/one }.
+
+  A partir de este momento, empezare a pasar algunas notas, hare uno o dos books como
+  ejemplo, sin embargo, el tiempo que esto me llevara sera tanto que lo mas
+  probable sea que no concluya todo, es por ello que espero que a la comunidad
+  le interese el proyecto y pueda sumar algun aporte.
 
