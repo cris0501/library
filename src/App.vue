@@ -19,7 +19,7 @@
             <span class="font-bold btn hidden md:flex"> Documentation </span>
             <span class="font-bold btn md:hidden"> Docs </span>
             </RouterLink>
-          <RouterLink :to="{name: 'book'}" class="hidden md:flex">
+          <RouterLink :to="{name: 'catalog'}" class="hidden md:flex">
             <span class="font-bold btn-primary"> Start Learning </span>
           </RouterLink>
         </div>

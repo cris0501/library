@@ -8,7 +8,7 @@
         </p>
         <div class="flex justify-around items-center mx-auto mt-8 space-x-4">
           <button class="btn-primary">
-            <RouterLink :to="{name: 'book'}">
+            <RouterLink :to="{name: 'catalog'}">
               Try Demo
             </RouterLink>
           </button>

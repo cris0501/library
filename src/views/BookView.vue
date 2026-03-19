@@ -68,7 +68,7 @@
 
 <script setup>
   import { ref, onMounted, provide } from 'vue'
-  import { RouterLink } from 'vue-router'
+  import { RouterLink, useRoute } from 'vue-router'
   import RenderContent from '../components/book/RenderContent.vue'
   import BtnScroll from '../components/book/BtnScroll.vue'
   import MenuLateral from '../components/book/MenuLateral.vue'
@@ -80,7 +80,8 @@
   const menuOpen = ref(false)
   const viewMode = ref('rendered')
   const texContent = ref('')
-  const book = "test" // ToDo> Implement {nameBook} in router
+  const route = useRoute()
+  const book = route.params.name
   
   const activeNoteId = ref(null)
   provide('activeNoteId', activeNoteId)
@@ -111,14 +112,14 @@
   const showSource = () => {
     viewMode.value = 'source'
     if (texContent.value) return
-    fetch(`${import.meta.env.BASE_URL}books/${book}/test.tex`)
+    fetch(`${import.meta.env.BASE_URL}books/${book}/main.tex`)
       .then(r => r.text())
       .then(r => { texContent.value = r })
       .catch(console.error)
   }
 
   onMounted(() => {
-    fetch(`${import.meta.env.BASE_URL}books/${book}/test.json`)
+    fetch(`${import.meta.env.BASE_URL}books/${book}/main.json`)
       .then(r => r.json())
       .then(r => {
         setTimeout(() => {

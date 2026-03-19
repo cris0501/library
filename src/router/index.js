@@ -19,7 +19,12 @@ const router = createRouter({
       component: () => import('../views/Documentation.vue'),
     },
     {
-      path: '/book',
+      path: '/catalog',
+      name: 'catalog',
+      component: () => import('../views/CatalogView.vue'),
+    },
+    {
+      path: '/book/:name',
       name: 'book',
       component: () => import('../views/BookView.vue'),
     },

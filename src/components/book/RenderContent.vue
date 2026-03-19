@@ -11,7 +11,7 @@
     </template>
 
     <template v-else-if="item.kind === 'heading'">
-      <span v-if="item.chapter_index" :id="'chapter:'+item.chapter_index"></span> <!-- Reference id -->
+      <span v-if="item.chapter_index" :id="'chapter:'+item.chapter_index"></span>
       <div :class="{
         'w-full': true,
         'border-b': true,
@@ -116,6 +116,10 @@
       <Table :item="item" />
     </template>
 
+    <template v-else-if="item.kind === 'join'">
+      <Join :slots="item.slots" />
+    </template>
+
     <template v-else-if="item.kind === 'group'">
       <RenderContent v-for="(sub, i) in item.content" :key="i" :item="sub" />
     </template>
@@ -133,6 +137,7 @@
   import Figure from './Figure.vue'
   import Proposition from './Proposition.vue'
   import Table from './Table.vue'
+  import Join from './Join.vue'
 
   defineProps({
     item: { required: true }
