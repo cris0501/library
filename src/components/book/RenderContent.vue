@@ -112,6 +112,10 @@
       <pre class="font-mono text-sm bg-gray-100 p-4 rounded-lg my-4 whitespace-pre" > {{ item.raw }}</pre>
     </template>
 
+    <template v-else-if="item.kind === 'table'">
+      <Table :item="item" />
+    </template>
+
     <template v-else-if="item.kind === 'group'">
       <RenderContent v-for="(sub, i) in item.content" :key="i" :item="sub" />
     </template>
@@ -128,6 +132,7 @@
   import Block from './Block.vue'
   import Figure from './Figure.vue'
   import Proposition from './Proposition.vue'
+  import Table from './Table.vue'
 
   defineProps({
     item: { required: true }
