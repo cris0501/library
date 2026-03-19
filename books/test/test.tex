@@ -87,6 +87,7 @@ proyecto, previamente abandonado.
       \item Cierre implicito del anterior
   \end{itemize}
 
+
   \chapter{ Contextos }
 
   \section{ Ecuaciones }
@@ -195,30 +196,15 @@ book
   con key-value props. Asi siguen la misma sintaxis que el parser ya conoce y
   el escritor no necesita aprender nada nuevo.
 
-  \begin{axiom}
-    Los custom components dejaron de ser commands inline para ser environments con key-value props.
-  \end{axiom}
-
   \begin{axiom}[title=Arquimedes, label=ax-arq]
     Para todo $x \in \N$ existe $y \in \N$ tal que $y > x$.
   \end{axiom}
 
-  \begin{theorem}[Bolzano-Weierstrass]
+  \begin{theorem}[title=Bolzano-Weierstrass, label=th-bw]
     Toda sucesion acotada en $\R^n$ tiene una subsucesion convergente.
   \end{theorem}
 
-  \begin{definition}[title=Espacio metrico, label=def-met]
-    Un espacio metrico es un par $(X, d)$ donde ...
-  \end{definition}
 
-  \begin{proof}
-    Sea $\epsilon > 0$ ...
-    \qed
-  \end{proof}
-
-  \begin{exercise}[label=ej-1]
-    Demuestre que ...
-  \end{exercise}
 
   \chapter{ Capitulos y estilos }
 
@@ -268,8 +254,8 @@ book
 
   \section{Modificadores}
   
-  Los \note[modificadores]{ Elementos que alteran al elemento padre }. Ahora, ya lo
-  integre y funciona, la cosa es que muy muy pocos son los que usan modificadores
+  Los \note[modificadores]{ Elementos que alteran al elemento padre }, lo
+  integre y funciona, pero qu el los uso pocos son los que usan modificadores
   de estilo por lo que los integrare solo si se necesita. Ahorita importa otro cambio.
   
   \section{ Metadata de un documento }
@@ -277,5 +263,40 @@ book
   La {\bfseries metadata} se refiere a la informacion relacionada con el mismo fichero,
   es decir, las dependencias que tiene, el tipo de documento, configuraciones, etc. Es
   importante para crear un catalogo que pueda leer esa informacion de forma automatica.
+  Esto nos brinda informacion rapida, por ejemplo, si importa Tikz, aun no hay soporte.
+  
+  \alert{ Dar soporte a Tikz es el mayor problema que veo ahorita. }
+  
+  \chapter{ Primeros documentos }
+  
+  Decidí empezar a trabajar en algunas notas. La idea es poner a prueba el proyecto para
+  que la comunidad pueda ver un ejemplo claro. Es por ello que trataré de pasar parte de
+  mis notas de lógica ya que mi acesor me recomendo revisar unos temas y entonces logré
+  entender algunos temas que considero utiles para los primeros semestres. ¿Y eso que
+  tiene que ver?
+  
+  Uso un par de tablas, asi que hasta hoy las integre. Ya tenía una parte construida pero
+  la otra parte la separé ya que requieren un proceso de parser muy diferente.
+  
+  \begin{tabular}{ c|rr }
+    Conector & Simbolo & Alternativo \\
+    \hline
+    Conjunción    & $ \land $ & \\
+    Disjuncion    & $ \lor $ & \\
+    Negación      & $ \neg $ & ~ \\
+    Implicación   & $ \rightarrow $ & \\
+    Bicondicional & $ \leftrightarrow $ & \\
+    \hline
+  \end{tabular}
+  
+  No tenía otro ejemplo claro pero demuestra que se pueden insertar matematicas simples
+  en una celda, es decir, tenemos nodos ricos.
+  
+  Ademas, es justo en este momento donde separé este documento en ficheros. Realmente no
+  llevan continuidad pero sirve que se prueba esta función. Lo malo es que, por la forma
+  en que lo integré, no indica correctamente el punto de error. Se me ocurre crear un
+  nuevo stack para cada include y así poder indicar el punto exacto. De momento, no es urgente.
 
 \end{document}
+
+
