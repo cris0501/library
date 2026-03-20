@@ -20,14 +20,14 @@
   demostrar proposiciones matemáticas. Para ello, basta probar, ya fuese
   un \textit{contraejemplo} o una construcción directa.
 
-  \begin{definition}[title={Contraejemplo}]
+  \begin{definition}[title=Contraejemplo]
   Un contraejemplo es probar que alguna de las exclusiones puede ocurrir.
   \end{definition}
 
   \subsection{Conjunción}
 
   \begin{minipage}[t]{0.48\textwidth}
-  \begin{definition}[title={Conjunción}]
+  \begin{definition}[title=Conjunción]
   El conector $p \land q$ solo permite el par ordenado $(V, V)$ y excluye
   al resto.
   \end{definition}
@@ -55,7 +55,7 @@
   \subsection{Disyunción}
 
   \begin{minipage}[t]{0.48\textwidth}
-  \begin{definition}[title={Disyunción}]
+  \begin{definition}[title=Disyunción]
   Para el conector $p \lor q$ únicamente se excluye $(F, F)$.
   \end{definition}
   \end{minipage}
@@ -81,7 +81,7 @@
   \subsection{Implicación}
 
   \begin{minipage}[t]{0.48\textwidth}
-  \begin{definition}[title={Implicación}]
+  \begin{definition}[title=Implicación]
   En lógica proposicional no se busca describir el mundo físico, es decir,
   la lógica no entiende causalidad ni temporalidad, sino que son un
   conjunto de reglas. Este conector no explica que si ocurre $p$ causa $q$,
@@ -133,17 +133,14 @@
 
   \subsection{Bicondicional}
 
-  \begin{minipage}[t]{0.48\textwidth}
-  \begin{definition}[title={Bicondicional}]
+  \begin{definition}[title=Bicondicional]
   $p \leftrightarrow q$ es verdad cuando $p$ y $q$ tienen el mismo valor
   de verdad en todas las interpretaciones, es decir:
   \begin{equation}
   p \leftrightarrow q \equiv (p \to q) \land (q \to p)
   \end{equation}
   \end{definition}
-  \end{minipage}
 
-  \begin{minipage}[t]{0.48\textwidth}
   \begin{tabular}{c|c|c|c|c}
   $p$ & $q$ & $p \to q$ & $q \to p$ & $(p \to q) \land (q \to p)$ \\
   \hline
@@ -152,7 +149,6 @@
   V & F & F & V & F \\
   F & F & V & V & V \\
   \end{tabular}
-  \end{minipage}
 
   De forma que es verdadera cuando coinciden $p$ y $q$, así:
 
@@ -171,11 +167,11 @@
 
   \subsection{Ejemplo: Triángulo Equilátero}
 
-  \begin{proposition}[title={Ángulos de 60° implica equilátero}]
+  \begin{proposition}[title=Ángulos de 60° implica equilátero]
   Si el triángulo $ABC$ tiene 2 ángulos de $60°$ entonces es equilátero.
   \end{proposition}
 
-  \begin{proof}[title={Construcción directa}]
+  \begin{proof}[title=Construcción directa]
   En un espacio euclídeo, todo triángulo tiene $180°$, de modo que el
   tercer ángulo es de $60°$ pues:
   \begin{align}
@@ -200,7 +196,7 @@
 
   \subsection{Eliminación de la Implicación}
 
-  \begin{definition}[title={Eliminación de la implicación}]
+  \begin{definition}[title=Eliminación de la implicación]
   \begin{equation}
   p \to q \equiv \sim p \lor q
   \end{equation}
@@ -211,7 +207,7 @@
   \subsection{Contraposición}
 
   \begin{minipage}[t]{0.48\textwidth}
-  \begin{definition}[title={Contraposición}]
+  \begin{definition}[title=Contraposición]
   Se parece mucho a equivalencia: si se asume que $q$ es $F$, entonces
   $p$ también debe serlo, pues la implicación excluye el caso en que $p$
   es $V$ y $q$ es $F$.
@@ -239,7 +235,7 @@
 
   \subsection{Leyes de Morgan}
 
-  \begin{theorem}[title={Leyes de De Morgan}]
+  \begin{theorem}[title=Leyes de De Morgan]
   \begin{align}
   \sim(p \land q) &\equiv \sim p \lor \sim q \\
   \sim(p \lor q)  &\equiv \sim p \land \sim q
@@ -255,14 +251,14 @@
   proposición en su forma normal; esta es una forma estandarizada de
   escribir proposiciones usando solo ciertos conectores.
 
-  \begin{definition}[title={Forma Normal Disyuntiva (FND)}]
+  \begin{definition}[title=Forma Normal Disyuntiva (FND)]
   Es una conjunción de disyunciones:
   \begin{equation}
   (p_1 \lor q_1) \land (p_2 \lor q_2) \land \cdots
   \end{equation}
   \end{definition}
 
-  \begin{definition}[title={Forma Normal Conjuntiva (FNC)}]
+  \begin{definition}[title=Forma Normal Conjuntiva (FNC)]
   Es una disyunción de conjunciones:
   \begin{equation}
   (p_1 \land q_1) \lor (p_2 \land q_2) \lor \cdots
@@ -291,7 +287,7 @@
   Podemos simplificar la notación asignando nombres a ciertas
   proposiciones; estos son conocidos como los 4 modos clásicos.
 
-  \begin{definition}[title={Modus Ponens}]
+  \begin{definition}[title=Modus Ponens]
   La restricción se propaga. Estructura:
   \begin{align}
   &p \to q \\
@@ -301,7 +297,7 @@
   \end{align}
   \end{definition}
 
-  \begin{definition}[title={Modus Tollens}]
+  \begin{definition}[title=Modus Tollens]
   Ya que la restricción es $p \land \sim q$ y $\sim q = V$, no puede
   ocurrir que $p = V$, de modo que solo queda $\sim p$. Estructura:
   \begin{align}
@@ -312,7 +308,7 @@
   \end{align}
   \end{definition}
 
-  \begin{definition}[title={Silogismo Hipotético}]
+  \begin{definition}[title=Silogismo Hipotético]
   Es básicamente una composición de restricciones. Estructura:
   \begin{align}
   &p \to q \\
@@ -322,7 +318,7 @@
   \end{align}
   \end{definition}
 
-  \begin{definition}[title={Silogismo Disyuntivo}]
+  \begin{definition}[title=Silogismo Disyuntivo]
   Un \textit{o} excluyente. Estructura:
   \begin{align}
   &p \lor q \\
@@ -334,7 +330,7 @@
 
   \subsection{Argumento Válido}
 
-  \begin{definition}[title={Argumento}]
+  \begin{definition}[title=Argumento]
   Un argumento tiene la forma $(P_1, P_2, \ldots) \therefore q$, o
   formalmente $(P_1 \land P_2 \land \cdots) \to q$, y diremos que es
   válido si no existe una valuación donde las premisas son verdaderas y
@@ -363,13 +359,15 @@
   $((p \to q) \land (q \to r)) \land p) \to r$, entonces podemos
   reemplazar todo el primer bloque por $r$ sin perder verdad.
 
-  \begin{definition}[title={Verdad bajo valuación}]
+  \begin{definition}[title=Verdad bajo valuación]
   Decimos que una fórmula es verdad bajo una valuación $v$ si al
   evaluarla con las reglas semánticas de los conectores el resultado es $V$.
   \end{definition}
 
-  \begin{definition}[title={Argumento válido}]
+  \begin{definition}[title=Argumento válido]
   Un argumento es válido si no existe una valuación donde todas las
   premisas sean verdaderas y las conclusiones sean falsas.
   \end{definition}
 \end{document}
+
+

@@ -1,7 +1,7 @@
 <template>
   <!-- Topbar -->
   <div class="sticky top-0 left-0 flex justify-between items-center w-full h-[55px] px-6 bg-primary z-10 shadow-sm">
-    <RouterLink :to="{name: 'home'}">
+    <RouterLink :to="{name: 'catalog'}">
       <i class="icon icon-left text-2xl text-gray-900" />
     </RouterLink>
     <div class="flex items-center gap-3">
