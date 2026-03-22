@@ -12,15 +12,15 @@
         </div>
         <div class="flex items-center space-x-3">
           <RouterLink :to="{name: 'feat'}">
-            <span class="font-bold btn hidden md:flex"> Features </span>
-            <span class="font-bold btn md:hidden"> Feats </span>
+            <span class="font-bold btn hidden md:flex"> Características </span>
+            <span class="font-bold btn md:hidden"> Caract. </span>
           </RouterLink>
           <RouterLink :to="{name: 'doc'}">
-            <span class="font-bold btn hidden md:flex"> Documentation </span>
+            <span class="font-bold btn hidden md:flex"> Documentación </span>
             <span class="font-bold btn md:hidden"> Docs </span>
             </RouterLink>
           <RouterLink :to="{name: 'catalog'}" class="hidden md:flex">
-            <span class="font-bold btn-primary"> Start Learning </span>
+            <span class="font-bold btn-primary"> Comenzar </span>
           </RouterLink>
         </div>
       </nav>

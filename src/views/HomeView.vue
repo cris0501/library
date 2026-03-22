@@ -2,24 +2,24 @@
   <header>
     <div class="flex flex-col justify-center min-h-[55dvh] bg-yellow-400 rounded-b-[35px] pt-[25px] lg:pt-6 pb-6 mb-[5%]">
       <div class="flex flex-col items-center w-2/3 mx-auto">
-        <span class="font-plex font-bold text-6xl mb-5"> Learn Through Play </span>
-        <p class="font-nunito text-2xl text-gray-800 text-center"> 
-          A new way to learn languages with interactive exercises and LaTeX support
+        <span class="font-plex font-bold text-6xl mb-5"> Aprende Jugando </span>
+        <p class="font-nunito text-2xl text-gray-800 text-center">
+          Una nueva forma de aprender con ejercicios interactivos y soporte para LaTeX
         </p>
         <div class="flex justify-around items-center mx-auto mt-8 space-x-4">
           <button class="btn-primary">
             <RouterLink :to="{name: 'catalog'}">
-              Try Demo
+              Ver Demo
             </RouterLink>
           </button>
-          <button class="btn-primary"> Learn More </button>
+          <button class="btn-primary"> Saber más </button>
         </div>
       </div>
     </div>
   </header>
   
   <article class="flex flex-col items-center px-2 pb-6 md:px-6 lg:px-24 mb-[5%]">
-    <span class="font-plex font-bold text-center text-4xl w-full block mb-16"> How EduWords works </span>
+    <span class="font-plex font-bold text-center text-4xl w-full block mb-16"> Cómo funciona EduWords </span>
     <section class="relative">
       <div class="absolute left-6 top-0 h-full w-0.5 bg-gradient-to-b from-yellow-400 via-yellow-500 to-yellow-600"></div>
       <div class="space-y-12">
@@ -39,10 +39,10 @@
   </article>
 
   <article class="flex flex-col px-2 py-12 md:px-6 lg:p-24 bg-gray-50">
-    <span class="font-plex font-bold text-center text-4xl w-full block mb-8"> Features </span>
+    <span class="font-plex font-bold text-center text-4xl w-full block mb-8"> Características </span>
     <div class="flex flex-col md:flex-row md:items-stretch md:space-x-10  my-5">
       <section class="flex flex-col flex-1 justify-center items-center border-3 border-yellow-400 rounded-xl p-4 space-y-3 min-h-[25dvh] mb-12 md:mb-0">
-        <span class="font-nunito font-bold text-2xl w-full"> LaTeX Compatibility </span>
+        <span class="font-nunito font-bold text-2xl w-full"> Compatibilidad con LaTeX </span>
         <div class="w-full p-3 bg-gray-200/50 rounded-xl font-jet">
           \frac{d}{dx}\left(x^2\right) = 2x
         </div>
@@ -50,34 +50,34 @@
           <Equation raw="\frac{d}{dx}\left(x^2\right) = 2x" />
         </div>
         <p class="text-gray-700 text-sm">
-          Example of LaTeX mathematical notation rendered in your content
+          Ejemplo de notación matemática LaTeX renderizada en tu contenido
         </p>
       </section>
       <section class="flex-1 flex flex-col items-center p-4 space-y-10">
         <div class="flex items-start space-x-5 w-full">
           <span class="flex justify-center items-center bg-yellow-200 rounded-xl text-[1.5rem] text-amber-600 w-12 h-12"><i class="icon icon-file"></i></span>
           <div class="flex-1 flex flex-col">
-            <span class="font-bold text-xl mb-2">Mathematical Expressions</span>
+            <span class="font-bold text-xl mb-2">Expresiones Matemáticas</span>
             <p class="text-gray-700">
-              Write complex mathematical formulas using LaTeX syntax, rendered beautifully in your content.
+              Escribe fórmulas matemáticas complejas con sintaxis LaTeX, renderizadas de forma elegante en tu contenido.
             </p>
           </div>
         </div>
         <div class="flex items-start space-x-5 w-full">
           <span class="flex justify-center items-center bg-yellow-200 rounded-xl text-[1.5rem] text-amber-600 w-12 h-12"><i class="icon icon-graduation"></i></span>
           <div class="flex-1 flex flex-col">
-            <span class="font-bold text-xl mb-2">Student-Friendly</span>
+            <span class="font-bold text-xl mb-2">Para Estudiantes</span>
             <p class="text-gray-700">
-              Designed specifically for university students, with academic features and formatting.
+              Diseñado específicamente para estudiantes universitarios, con funciones y formatos académicos.
             </p>
           </div>
         </div>
         <div class="flex items-start space-x-5 w-full">
           <span class="flex justify-center items-center bg-yellow-200 rounded-xl text-[1.5rem] text-amber-600 w-12 h-12"><i class="icon icon-user"></i></span>
           <div class="flex-1 flex flex-col">
-            <span class="font-bold text-xl mb-2">Community Reviews</span>
+            <span class="font-bold text-xl mb-2">Reseñas de la Comunidad</span>
             <p class="text-gray-700">
-              Get feedback and suggestions from other students in your field.
+              Recibe comentarios y sugerencias de otros estudiantes de tu área.
             </p>
           </div>
         </div>
@@ -86,12 +86,12 @@
   </article>
 
   <section class="flex flex-col w-5/6 md:w-2/3 mx-auto py-24">
-    <span class="text-3xl text-center font-bold mb-10">Our Mission</span>
+    <span class="text-3xl text-center font-bold mb-10">Nuestra Misión</span>
 
     <div class="bg-yellow-50 p-8 rounded-lg border-l-4 border-yellow-400 mb-10">
       <p class="text-lg text-gray-700italic">
-        "Our goal is simple: to create a platform where educational content can be freely shared, accessed, and
-        improved upon by a community of learners and educators."
+        "Nuestro objetivo es simple: crear una plataforma donde el contenido educativo pueda compartirse, consultarse
+        y mejorarse libremente por una comunidad de estudiantes y educadores."
       </p>
     </div>
 
@@ -100,9 +100,9 @@
         <div class="flex items-start justify-center space-x-5 w-full p-5">
           <span class="flex justify-center items-center bg-yellow-100 rounded-full text-[1.5rem] text-amber-600 w-12 h-12"><i class="icon icon-share"></i></span>
           <div class="flex-1 flex flex-col">
-            <span class="font-bold text-xl mb-2">Sharing Knowledge</span>
+            <span class="font-bold text-xl mb-2">Compartir Conocimiento</span>
             <p class="text-gray-700">
-              We believe knowledge should be freely accessible to everyone. EduWords was created to facilitate the sharing of educational content across disciplines and borders.
+              Creemos que el conocimiento debe ser libremente accesible para todos. EduWords nació para facilitar el intercambio de contenido educativo entre disciplinas y fronteras.
             </p>
           </div>
         </div>
@@ -111,9 +111,9 @@
         <div class="flex items-start space-x-5 w-full p-5">
           <span class="flex justify-center items-center bg-yellow-100 rounded-full text-[1.5rem] text-amber-600 w-12 h-12"><i class="icon icon-institute"></i></span>
           <div class="flex-1 flex flex-col">
-            <span class="font-bold text-xl mb-2">Supporting Education</span>
+            <span class="font-bold text-xl mb-2">Apoyar la Educación</span>
             <p class="text-gray-700">
-              Our platform is designed to support schools and educational institutions by providing tools that make learning more interactive and engaging.
+              Nuestra plataforma está diseñada para apoyar a escuelas e instituciones educativas, ofreciendo herramientas que hacen el aprendizaje más interactivo y dinámico.
             </p>
           </div>
         </div>
@@ -122,9 +122,9 @@
         <div class="flex items-start space-x-5 w-full p-5">
           <span class="flex justify-center items-center bg-yellow-100 rounded-full text-[1.5rem] text-amber-600 w-12 h-12"><i class="icon icon-book-open"></i></span>
           <div class="flex-1 flex flex-col">
-            <span class="font-bold text-xl mb-2">Democratizing Learning</span>
+            <span class="font-bold text-xl mb-2">Democratizar el Aprendizaje</span>
             <p class="text-gray-700">
-              By making educational content freely available, we aim to democratize learning and reduce barriers to quality education.
+              Al poner el contenido educativo a disposición de todos, buscamos democratizar el aprendizaje y reducir las barreras al acceso de una educación de calidad.
             </p>
           </div>
         </div>
@@ -133,9 +133,9 @@
         <div class="flex items-start space-x-5 w-full p-5">
           <span class="flex justify-center items-center bg-yellow-100 rounded-full text-[1.5rem] text-amber-600 w-12 h-12"><i class="icon icon-heart"></i></span>
           <div class="flex-1 flex flex-col">
-            <span class="font-bold text-xl mb-2">Community-Driven</span>
+            <span class="font-bold text-xl mb-2">Impulsado por la Comunidad</span>
             <p class="text-gray-700">
-              EduWords is built by students for students. We're not driven by profit, but by a passion for education and a desire to help others learn.
+              EduWords es creado por estudiantes para estudiantes. No nos mueve el lucro, sino la pasión por la educación y el deseo de ayudar a otros a aprender.
             </p>
           </div>
         </div>
@@ -144,33 +144,33 @@
 
     <div class="bg-gradient-to-r from-yellow-100 to-yellow-200 rounded-xl flex p-6 my-10">
       <div class="flex flex-col">
-        <span class="flex items-center text-3xl font-bold mb-5 font-merri"><i class="icon icon-stars mr-3 text-5xl text-amber-600"></i> The KISS Principle</span>
+        <span class="flex items-center text-3xl font-bold mb-5 font-merri"><i class="icon icon-stars mr-3 text-5xl text-amber-600"></i> El Principio KISS</span>
         <p class="font-plex ">
-          At EduWords, we follow the KISS principle: <b>Keep It Simple, <del>Stupid</del></b>. We believe that simplicity is the ultimate sophistication, especially in education.
+          En EduWords seguimos el principio KISS: <b>Keep It Simple, <del>Stupid</del></b>. Creemos que la simplicidad es la máxima sofisticación, especialmente en educación.
         </p>
         <div class="grid md:grid-cols-2 gap-6 pt-4">
           <div class="bg-white p-4 rounded-lg">
-            <span class="font-semibold mb-2">Simple Design</span>
+            <span class="font-semibold mb-2">Diseño Simple</span>
             <p class="text-gray-700">
-              Our interface is intuitive and clutter-free, allowing users to focus on what matters: the content.
+              Nuestra interfaz es intuitiva y sin distracciones, para que los usuarios se enfoquen en lo que importa: el contenido.
             </p>
           </div>
           <div class="bg-white p-4 rounded-lg">
-            <span class="font-semibold mb-2">Simple Workflow</span>
+            <span class="font-semibold mb-2">Proceso Simple</span>
             <p class="text-gray-700">
-              Creating and sharing content follows a straightforward process that anyone can master quickly.
+              Crear y compartir contenido sigue un flujo directo que cualquiera puede aprender rápidamente.
             </p>
           </div>
           <div class="bg-white p-4 rounded-lg">
-            <span class="font-semibold mb-2">Simple Language</span>
+            <span class="font-semibold mb-2">Lenguaje Simple</span>
             <p class="text-gray-700">
-              We avoid jargon and complex terminology, making our platform accessible to users of all backgrounds.
+              Evitamos la jerga y la terminología compleja, haciendo la plataforma accesible para cualquier persona.
             </p>
           </div>
           <div class="bg-white p-4 rounded-lg">
-            <span class="font-semibold mb-2">Simple Goals</span>
+            <span class="font-semibold mb-2">Objetivos Simples</span>
             <p class="text-gray-700">
-              We focus on doing one thing well: helping people share and access educational content.
+              Nos enfocamos en hacer bien una sola cosa: ayudar a compartir y acceder a contenido educativo.
             </p>
           </div>
         </div>
@@ -178,19 +178,15 @@
     </div>
     
     <span class="text-gray-700 text-center">
-      Join us in our mission to make education more accessible, interactive, and enjoyable for everyone.
+      Únete a nuestra misión de hacer la educación más accesible, interactiva y agradable para todos.
     </span>
   </section>
 
   <section class="flex flex-col items-stretch px-6 lg:px-24 py-20 bg-gray-50">
-    <span class="text-3xl text-center font-bold mb-10">Future of EduWords</span>
+    <span class="text-3xl text-center font-bold mb-10">El Futuro de EduWords</span>
     <span class="text-gray-700 text-xl mx-auto mb-8">
-      EduWords is evolving to serve you better, while remaining completely free.
+      EduWords evoluciona para servirte mejor, manteniéndose completamente gratuito.
     </span>
-    <span class="text-gray-700 text-xl mx-auto mb-8">
-      EduWords is and will always be free to use. Creating an account unlocks additional features and ways to contribute.
-    </span>
-
     <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-5 mt-8">
       <div class="flex flex-col justify-center px-6 py-4 rounded-xl border-2 space-y-3 border-gray-200 bg-white" v-for="(item, index) in features" :key="index+'ft'">
         <i :class="`icon icon-${item.icon} text-yellow-500 text-4xl`"></i><span class="font-bold text-2xl mt-2"> {{ item.title }} </span>
@@ -216,10 +212,10 @@
     </div>
     <div class="hidden md:flex items-center space-x-4">
       <span class="font-nunito">
-        Terms &amp; Privacy
+        Términos y Privacidad
       </span>
       <span class="font-nunito">
-        Contact
+        Contacto
       </span>
     </div>
   </footer>
@@ -231,30 +227,30 @@
 
   const timeLine = [
     {
-      title: 'Write LaTeX File',
+      title: 'Escribe tu Archivo LaTeX',
       info: `
-        Create your content using LaTeX syntax
+        Crea tu contenido usando la sintaxis de LaTeX
       `,
       icon: 'file',
     },
     {
-      title: 'Upload',
+      title: 'Sube tu Archivo',
       info: `
-        Upload your LaTeX file to EduWords
+        Sube tu archivo LaTeX a EduWords
       `,
       icon: 'upload',
     },
     {
-      title: 'Compile',
+      title: 'Compilación',
       info: `
-        Our custom compiler processes your LaTeX on the server
+        Nuestro compilador personalizado procesa tu LaTeX en el servidor
       `,
       icon: 'server',
     },
     {
-      title: 'Publish',
+      title: 'Publica',
       info: `
-        Your virtual book is now ready to be shared and read
+        Tu libro virtual está listo para compartirse y leerse
       `,
       icon: 'book-open',
     },
@@ -262,23 +258,23 @@
 
   const features = [
     {
-      title: 'Free Accounts',
+      title: 'Cuentas Gratuitas',
       info: `
-        Create a free account to access all features. Reading is always free for everyone.
+        Crea una cuenta gratis para acceder a todas las funciones. Leer siempre es gratis para todos.
       `,
       icon: 'user'
     },
     {
-      title: 'Contribute and Interact',
+      title: 'Contribuye e Interactúa',
       info: `
-        With a free account, create, publish, comment, and suggest improvements to content.
+        Con una cuenta gratuita, crea, publica, comenta y sugiere mejoras al contenido.
       `,
       icon: 'edit'
     },
     {
-      title: 'Continuous Upgrades',
+      title: 'Mejoras Continuas',
       info: `
-        We're constantly improving and adding new features to enhance your experience, all for free.
+        Estamos en constante mejora, añadiendo nuevas funciones para enriquecer tu experiencia, todo gratis.
       `,
       icon: 'star'
     }
