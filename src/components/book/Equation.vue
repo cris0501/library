@@ -1,7 +1,6 @@
 <template>
-  <span
-    class="inline mx-1"
-    v-html="rendered"></span>
+  <div v-if="displayMode" class="w-full overflow-x-auto my-2" v-html="rendered" />
+  <span v-else class="inline mx-1" v-html="rendered" />
 </template>
 
 <script setup>

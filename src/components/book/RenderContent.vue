@@ -109,7 +109,9 @@
     </span>
     
     <template v-else-if="item.kind === 'verbatim'" >
-      <pre class="font-mono text-sm bg-gray-100 p-4 rounded-lg my-4 whitespace-pre" > {{ item.raw }}</pre>
+      <div class="overflow-x-auto my-4">
+        <pre class="font-mono text-sm bg-gray-100 p-4 rounded-lg whitespace-pre w-max min-w-full" >{{ item.raw }}</pre>
+      </div>
     </template>
 
     <template v-else-if="item.kind === 'table'">

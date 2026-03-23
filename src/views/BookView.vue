@@ -1,6 +1,6 @@
 <template>
   <!-- Topbar -->
-  <div class="sticky top-0 left-0 flex justify-between items-center w-full h-[55px] px-6 bg-primary z-10 shadow-sm">
+  <div class="fixed top-0 left-0 flex justify-between items-center w-full h-[55px] px-6 bg-primary z-10 shadow-sm">
     <RouterLink :to="{name: 'catalog'}">
       <i class="icon icon-left text-2xl text-gray-900" />
     </RouterLink>
@@ -11,9 +11,9 @@
       <span class="font-plex font-bold text-sm text-gray-800">T. Letra</span>
       <input
         type="range"
-        min="0.9"
-        max="1.6"
-        step="0.1"
+        min="0.8"
+        max="1.2"
+        step="0.05"
         :value="fontSize"
         @input="fontSize = parseFloat($event.target.value)"
         class="accent-gray-900 cursor-pointer"
@@ -27,7 +27,7 @@
   <!-- Content: rendered -->
   <div
     v-if="viewMode === 'rendered'"
-    class="w-full lg:w-5/6 px-4 py-6 mx-auto mt-20 mb-16 text-justify"
+    class="w-full lg:w-5/6 px-4 py-6 mx-auto mt-20 mb-16 text-justify overflow-x-hidden"
     :style="{ fontSize: fontSize + 'em' }"
   >
     <div v-if="data.length">
@@ -75,7 +75,7 @@
   
   const data = ref([])
   const _refs = ref([])
-  const fontSize = ref(1.2)
+  const fontSize = ref(0.9)
   const navigationStack = ref([])
   const menuOpen = ref(false)
   const viewMode = ref('rendered')

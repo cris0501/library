@@ -1,6 +1,6 @@
 <template>
-  <div class="my-6 overflow-x-auto">
-    <table class="border-collapse mx-auto">
+  <div class="table-wrap w-full max-w-full overflow-x-auto my-6">
+    <table class="border-collapse mx-auto w-max">
       <tbody>
         <template v-for="(row, rowIndex) in item.rows" :key="rowIndex">
           <!-- Horizontal line row -->
