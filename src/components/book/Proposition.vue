@@ -7,7 +7,7 @@
       {{ label }}
     </section>
     <section class="p-6">
-      <div class="font-bold mb-3" v-if="props.title"> {{ props.title }}. </div>
+      <!--<div class="font-bold mb-3" v-if="props.title"> {{ props.title }}. </div>-->
       <RenderContent :item="cont" v-for="cont in props.content" />
     </section>
   </div>
@@ -46,5 +46,6 @@
     return title ? `${base}: ${title}` : base
   })
 </script>
+
 
 

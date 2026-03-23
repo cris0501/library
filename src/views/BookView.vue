@@ -22,7 +22,7 @@
   </div>
 
   <!-- Menu Lateral -->
-  <MenuLateral :isOpen="menuOpen" :viewMode="viewMode" @close="menuOpen = false" @viewSource="showSource" @viewRendered="viewMode = 'rendered'" />
+  <MenuLateral :isOpen="menuOpen" :viewMode="viewMode" :pdfUrl="pdfUrl" @close="menuOpen = false" @viewSource="showSource" @viewRendered="viewMode = 'rendered'" />
 
   <!-- Content: rendered -->
   <div
@@ -80,6 +80,7 @@
   const menuOpen = ref(false)
   const viewMode = ref('rendered')
   const texContent = ref('')
+  const pdfUrl = ref('')
   const route = useRoute()
   const book = route.params.name
   
@@ -119,6 +120,11 @@
   }
 
   onMounted(() => {
+    const url = `${import.meta.env.BASE_URL}books/${book}/main.pdf`
+    fetch(url, { method: 'HEAD' })
+      .then(r => { if (r.ok) pdfUrl.value = url })
+      .catch(() => {})
+
     fetch(`${import.meta.env.BASE_URL}books/${book}/main.json`)
       .then(r => r.json())
       .then(r => {

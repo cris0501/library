@@ -70,6 +70,22 @@
         </button>
       </div>
 
+      <!-- Descargar PDF -->
+      <div v-if="pdfUrl" class="mb-8">
+        <h3 class="font-plex font-bold text-sm text-gray-600 uppercase tracking-wider mb-3">
+          Descargar
+        </h3>
+        <a
+          :href="pdfUrl"
+          download
+          class="w-full flex items-center py-3 px-4 rounded bg-gray-200 hover:bg-gray-300 transition-colors"
+          @click="close"
+        >
+          <i class="icon icon-download text-lg text-gray-700 mr-3"></i>
+          <span class="font-plex text-sm text-gray-700">Descargar PDF original</span>
+        </a>
+      </div>
+
       <!-- En Desarrollo -->
       <div class="mb-8">
         <h3 class="font-plex font-bold text-sm text-gray-600 uppercase tracking-wider mb-3">
@@ -114,7 +130,8 @@ import { inject, computed } from 'vue'
 
 const props = defineProps({
   isOpen: { type: Boolean, default: false },
-  viewMode: { type: String, default: 'rendered' }
+  viewMode: { type: String, default: 'rendered' },
+  pdfUrl: { type: String, default: '' }
 })
 
 const emit = defineEmits(['close', 'viewSource', 'viewRendered'])
