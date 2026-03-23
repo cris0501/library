@@ -22,7 +22,7 @@
   </div>
 
   <!-- Menu Lateral -->
-  <MenuLateral :isOpen="menuOpen" :viewMode="viewMode" :pdfUrl="pdfUrl" @close="menuOpen = false" @viewSource="showSource" @viewRendered="viewMode = 'rendered'" />
+  <MenuLateral :isOpen="menuOpen" :viewMode="viewMode" :pdfUrl="pdfUrl" :cardsUrl="cardsUrl" @close="menuOpen = false" @viewSource="showSource" @viewRendered="viewMode = 'rendered'" />
 
   <!-- Content: rendered -->
   <div
@@ -81,6 +81,7 @@
   const viewMode = ref('rendered')
   const texContent = ref('')
   const pdfUrl = ref('')
+  const cardsUrl = ref('')
   const route = useRoute()
   const book = route.params.name
   
@@ -120,9 +121,14 @@
   }
 
   onMounted(() => {
-    const url = `${import.meta.env.BASE_URL}books/${book}/main.pdf`
-    fetch(url, { method: 'HEAD' })
-      .then(r => { if (r.ok) pdfUrl.value = url })
+    var urlCards = `${import.meta.env.BASE_URL}books/${book}/cards.json`
+    fetch(urlCards, { method: 'HEAD' })
+      .then(r => { if (r.ok) cardsUrl.value = btoa(urlCards) })
+      .catch(() => {})
+  
+    const urlPdf = `${import.meta.env.BASE_URL}books/${book}/main.pdf`
+    fetch(urlPdf, { method: 'HEAD' })
+      .then(r => { if (r.ok) pdfUrl.value = urlPdf })
       .catch(() => {})
 
     fetch(`${import.meta.env.BASE_URL}books/${book}/main.json`)
@@ -151,5 +157,6 @@
   letter-spacing: 0.01em;
 }
 </style>
+
 
 

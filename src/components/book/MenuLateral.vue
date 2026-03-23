@@ -1,17 +1,14 @@
 <template>
-  <!-- Overlay Background -->
   <div
     v-if="isOpen"
     class="fixed inset-0 bg-black/70 z-40 transition-opacity duration-300"
     @click="close"
   ></div>
 
-  <!-- Menu Panel -->
   <div
     class="fixed top-0 right-0 h-full w-3/4 max-w-md bg-primary z-50 transform transition-transform duration-300 ease-out shadow-xl"
     :class="isOpen ? 'translate-x-0' : 'translate-x-full'"
   >
-    <!-- Header -->
     <div class="flex justify-between items-center px-6 py-4 border-b-2 border-dashed border-gray-400">
       <h2 class="font-plex font-bold text-lg text-gray-800">Menú</h2>
       <button @click="close" class="p-2">
@@ -19,9 +16,7 @@
       </button>
     </div>
 
-    <!-- Content -->
     <div class="overflow-y-auto h-[calc(100%-60px)] px-6 py-4">
-      <!-- Referencias -->
       <div class="mb-8">
         <h3 class="font-plex font-bold text-sm text-gray-600 uppercase tracking-wider mb-3">
           Referencias
@@ -47,10 +42,9 @@
         </ul>
       </div>
 
-      <!-- LaTeX Original / Mostrar Webbook -->
       <div class="mb-8">
         <h3 class="font-plex font-bold text-sm text-gray-600 uppercase tracking-wider mb-3">
-          Código Fuente
+          Recursos
         </h3>
         <button
           v-if="viewMode === 'rendered'"
@@ -68,13 +62,7 @@
           <i class="icon icon-book text-lg text-gray-700 mr-3"></i>
           <span class="font-plex text-sm text-gray-700">Mostrar Webbook</span>
         </button>
-      </div>
-
-      <!-- Descargar PDF -->
-      <div v-if="pdfUrl" class="mb-8">
-        <h3 class="font-plex font-bold text-sm text-gray-600 uppercase tracking-wider mb-3">
-          Descargar
-        </h3>
+        <br />
         <a
           :href="pdfUrl"
           download
@@ -83,6 +71,21 @@
         >
           <i class="icon icon-download text-lg text-gray-700 mr-3"></i>
           <span class="font-plex text-sm text-gray-700">Descargar PDF original</span>
+        </a>
+      </div>
+      
+      <div v-if="cardsUrl" class="mb-8">
+        <h3 class="font-plex font-bold text-sm text-gray-600 uppercase tracking-wider mb-3">
+          Utilidades
+        </h3>
+        <a
+          :href="`https://cris0501.github.io/cards3/#/import?src=${cardsUrl}`"
+          target="_blank"
+          class="w-full flex items-center py-3 px-4 rounded bg-gray-200 hover:bg-gray-300 transition-colors"
+          @click="close"
+        >
+          <i class="icon icon-download text-lg text-gray-700 mr-3"></i>
+          <span class="font-plex text-sm text-gray-700">Stack de tarjetas</span>
         </a>
       </div>
 
@@ -131,7 +134,8 @@ import { inject, computed } from 'vue'
 const props = defineProps({
   isOpen: { type: Boolean, default: false },
   viewMode: { type: String, default: 'rendered' },
-  pdfUrl: { type: String, default: '' }
+  pdfUrl: { type: String, default: '' },
+  cardsUrl: { type: String, default: '' }
 })
 
 const emit = defineEmits(['close', 'viewSource', 'viewRendered'])
@@ -166,3 +170,4 @@ const showWebbook = () => {
   close()
 }
 </script>
+
