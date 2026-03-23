@@ -180,24 +180,25 @@
   
   \begin{proposition}
     Si el triángulo $ABC$ tiene 2 ángulos de $60°$ entonces es equilátero
+
+    \begin{proof}
+      \begin{block}
+        \item  En un espacio euclídeo, todo triángulo tiene $180°$, de modo que el tercer ángulo es $60°$ pues:
+          \begin{align}
+            x + 2(60) &= 180 \\
+            x &= 60°
+          \end{align}
+          Luego, $ABC$ es equilátero. \qed
+        
+        \item Si bien no se demuestra directamente la exclusión, se recurre a ella pues:
+          \begin{align}
+            \text{ABC tiene 2 ángulos de } 60° & \to \text{ABC es equilátero} \\
+            p & \to q
+          \end{align}
+      \end{block}
+    \end{proof}
   \end{proposition}
   
-  \begin{block}
-    \item \begin{proof}[title=Construcción directa]
-      En un espacio euclídeo, todo triángulo tiene $180°$, de modo que el tercer ángulo es $60°$ pues:
-      \begin{align}
-        x + 2(60) &= 180 \\
-        x &= 60°
-      \end{align}
-      Luego, $ABC$ es equilátero. \qed
-    \end{proof}
-    
-    \item Si bien no se demuestra directamente la exclusión, se recurre a ella pues:
-      \begin{align}
-        \text{ABC tiene 2 ángulos de } 60° & \to \text{ABC es equilátero} \\
-        p & \to q
-      \end{align}
-  \end{block}
   
   Para este caso no se prueba $p \land \sim q$ directamente, sino que tomando $p$ como
   hipótesis, el modelo (geometría euclídea) predice que $\sim q$ es imposible, de modo que
